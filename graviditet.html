@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91HT20F9NY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-91HT20F9NY');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graviditet uke for uke – Alt du trenger å vite | Babyguiden.no</title>
+  <meta name="description" content="Komplett guide til hele svangerskapet – uke for uke gjennom alle tre trimestre. Symptomer, rutinekontroller, fødselsforberedelse og mer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .preg-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 60px 0; }
+    .preg-intro img { border-radius: var(--radius-lg); }
+    .preg-fetus-card { background: white; border-radius: var(--radius-lg); padding: 32px; border: 1px solid var(--border); text-align: center; box-shadow: 0 4px 24px var(--shadow); }
+    .fetus-size { font-size: 4rem; margin-bottom: 8px; }
+    .fetus-label { font-size: 0.8rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.08em; }
+    .fetus-value { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--sage-dark); }
+    .symptom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0; }
+    .symptom-card { background: white; border-radius: var(--radius); padding: 20px; border: 1px solid var(--border); text-align: center; }
+    .symptom-icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .symptom-card h4 { font-size: 0.9rem; margin-bottom: 4px; }
+    .symptom-card p { font-size: 0.8rem; color: var(--text-mid); }
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+    .checklist li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.9rem; padding: 12px 16px; background: white; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+    .checklist li::before { content: '✓'; color: var(--sage); font-weight: 700; flex-shrink: 0; }
+    .tips-box { background: var(--sage-light); border-radius: var(--radius); padding: 24px 28px; margin: 24px 0; border-left: 4px solid var(--sage-dark); }
+    .tips-box h4 { color: var(--sage-dark); margin-bottom: 8px; }
+    .tips-box p { font-size: 0.88rem; line-height: 1.7; }
+    .warn-box { background: var(--blush-light); border-radius: var(--radius); padding: 24px 28px; margin: 24px 0; border-left: 4px solid var(--blush); }
+    .warn-box h4 { color: #A04040; margin-bottom: 8px; }
+    .warn-box p { font-size: 0.88rem; line-height: 1.7; }
+    @media (max-width: 768px) {
+      .preg-intro { grid-template-columns: 1fr; }
+      .symptom-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">🌿</span><span class="logo-text">Babyguiden<span class="logo-dot">.no</span></span></a>
+    <nav class="main-nav">
+      <a href="graviditet.html" style="color:var(--sage-dark);font-weight:600;">Graviditet</a>
+      <a href="baby.html">Baby 0–2 år</a>
+      <a href="sovn.html">Søvn</a>
+      <a href="mat.html">Mat</a>
+      <a href="utvikling.html">Utvikling</a>
+      
+      <a href="kalkulator.html" class="nav-cta">Kalkulatorer</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="graviditet.html">🤰 Graviditet</a>
+    <a href="baby.html">👶 Baby 0–2 år</a>
+    <a href="sovn.html">😴 Søvn</a>
+    <a href="mat.html">🥣 Mat</a>
+    <a href="utvikling.html">🌱 Utvikling</a>
+    
+    <a href="kalkulator.html">🧮 Kalkulatorer</a>
+  </div>
+</header>
+
+<section class="page-hero" style="background: linear-gradient(135deg, #FFF5EC, #FDDBD8);">
+  <p class="hero-eyebrow" style="background:var(--blush-light);color:#A04040;">🤰 Komplett svangerskapsguide</p>
+  <h1>Graviditet – uke for uke</h1>
+  <p>Fra den første positive testen til babyen ligger i armene dine. Alt du trenger å vite om de 40 ukene som forandrer alt.</p>
+</section>
+
+<div class="container">
+  <section style="padding: 48px 0 20px;">
+    <div class="trimester-tabs">
+      <button class="trim-tab active" onclick="switchTrimester(1)">🌱 1. Trimester (Uke 1–12)</button>
+      <button class="trim-tab" onclick="switchTrimester(2)">🤰 2. Trimester (Uke 13–26)</button>
+      <button class="trim-tab" onclick="switchTrimester(3)">🐣 3. Trimester (Uke 27–40)</button>
+    </div>
+
+    <!-- 1. TRIMESTER -->
+    <div class="trimester-content active" id="trimester1">
+      <h2 style="font-size:2rem;margin-bottom:8px;">1. Trimester</h2>
+      <p style="color:var(--text-mid);margin-bottom:32px;">Uke 1–12 er preget av store forandringer du ikke kan se utenfra – men kroppen din vet det.</p>
+
+      <div class="symptom-grid">
+        <div class="symptom-card"><div class="symptom-icon">🤢</div><h4>Kvalme</h4><p>Rammer 80% av gravide, verst uke 6–9</p></div>
+        <div class="symptom-card"><div class="symptom-icon">😴</div><h4>Ekstrem tretthet</h4><p>Progesteronet gjør deg søvnig hele dagen</p></div>
+        <div class="symptom-card"><div class="symptom-icon">💓</div><h4>Ømme bryster</h4><p>Brystvevet forbereder seg til amming</p></div>
+        <div class="symptom-card"><div class="symptom-icon">🍋</div><h4>Matkvalmitet</h4><p>Lukt og smak du elsket kan plutselig være fælt</p></div>
+        <div class="symptom-card"><div class="symptom-icon">💧</div><h4>Hyppig vannlatning</h4><p>Livmoren vokser og presser på blæren</p></div>
+        <div class="symptom-card"><div class="symptom-icon">😢</div><h4>Humørsvingninger</h4><p>Hormonkaos er 100% normalt</p></div>
+      </div>
+
+      <div class="tips-box">
+        <h4>💡 Tips mot svangerskapskvalme</h4>
+        <p>Spis lite og ofte – aldri gå med tom mage. Ingefærte, kjeks ved sengen og B6-vitamin kan hjelpe. Mange synes det hjelper å lufte ut rom, bruke kaldt vann og unngå sterk lukt. Fortell legen din hvis det er alvorlig (hyperemesis gravidarum rammer ca. 1%).</p>
+      </div>
+
+      <h3 style="font-size:1.5rem;margin:32px 0 20px;">Uke-for-uke: 1. trimester</h3>
+      <div class="week-timeline">
+        <div class="week-item"><div class="week-num">Uke 4</div><div class="week-info"><h4>Befruktning bekreftet 🌟</h4><p>Embryoet er på størrelse med en valmuefrø (1-2 mm). HCG-hormoner begynner å stige – det er dette testen registrerer. Ta kontakt med fastlegen for terminbekreftelse.</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 6</div><div class="week-info"><h4>Hjerte begynner å slå ❤️</h4><p>Embryoet er ca. 4-6 mm – størrelse som et ris. Hjertet begynner å pumpe. Hode, rygg og grunnlag for lemmer dannes. Kvalmen er som verst nå for mange.</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 8</div><div class="week-info"><h4>Babyen beveger seg 🤸</h4><p>Nå ca. 1,6 cm – størrelse som et bringebær. Alle viktige organer er under utvikling. Fingre og tær begynner å skilles. Øyne og ører dannes.</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 10</div><div class="week-info"><h4>Fra embryo til foster 🌱</h4><p>Nå kalles det teknisk sett et foster! Ca. 3 cm og 4 gram. Alle organer er på plass. Tidlig fosterdiagnostikk (NIPT) kan bestilles privat fra uke 10.</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 12</div><div class="week-info"><h4>Nakkefoldmåling 🏥</h4><p>Ca. 6 cm. Den første rutineultralyd-undersøkelsen. Nakkefoldmåling + blodprøve gir risikobedømmelse for kromosomfeil. Qualmen begynner å avta for de fleste!</p></div></div>
+      </div>
+
+      <div class="warn-box">
+        <h4>⚠️ Kontakt lege ved</h4>
+        <p>Kraftige blødninger, sterke ensidig magesmerter (mulig ektopisk graviditet), feber over 38.5°C, uttalt oppkast uten evne til å beholde væske, eller hvis noe bare kjennes veldig galt. Stol på instinktene dine.</p>
+      </div>
+
+      <h3 style="font-size:1.5rem;margin:32px 0 20px;">📋 Huskeliste 1. trimester</h3>
+      <ul class="checklist">
+        <li>Ta kontakt med fastlege for graviditetsbekreftelse</li>
+        <li>Start med folsyre (400–800 mcg) og vitamin D</li>
+        <li>Bestill time hos jordmor (kommunal eller privat)</li>
+        <li>Unngå alkohol, røyk og visse medisiner</li>
+        <li>Fortell arbeidsgiver (du har krav på svangerskapspenger ved risikofylt arbeid)</li>
+        <li>Planlegg nakkefoldmåling (uke 11-14)</li>
+        <li>Søk svangerskapspenger/engangsstønad (Nav.no)</li>
+      </ul>
+    </div>
+
+    <!-- 2. TRIMESTER -->
+    <div class="trimester-content" id="trimester2">
+      <h2 style="font-size:2rem;margin-bottom:8px;">2. Trimester</h2>
+      <p style="color:var(--text-mid);margin-bottom:32px;">Uke 13–26 er ofte «honeymoon-fasen» av graviditeten. Energien kommer tilbake og magen begynner å vises!</p>
+
+      <div class="tips-box">
+        <h4>✨ Gode nyheter i 2. trimester</h4>
+        <p>For de fleste er dette den behageligste perioden. Kvalmen avtar, energien øker og du begynner å kjenne babyens bevegelser – vanligvis mellom uke 16 og 22 for førstegangsgravide. Magen er synlig nok til at du ser gravid ut, men ikke så stor at det er ubehagelig.</p>
+      </div>
+
+      <div class="week-timeline">
+        <div class="week-item"><div class="week-num">Uke 14</div><div class="week-info"><h4>Babyen er en sitron! 🍋</h4><p>Ca. 8 cm. Ansiktsuttrykk, rynker i panna og gjesping kan ses på ultralyd. Kroppen produserer mer blod – vær obs på jernmangel og anemi.</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 18</div><div class="week-info"><h4>Første spratting! 🦋</h4><p>Nå ca. 14 cm. Mange kjenner de første bevegelsene – som en liten sommerfugl eller bobler i magen. Høresansen er aktiv, babyen reagerer på lyder.</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 20</div><div class="week-info"><h4>Midsveis-ultralyd 🔬</h4><p>Den store undersøkelsen! Alle organer sjekkes grundig, morkakens plassering vurderes, kjønn kan ses (om dere vil vite). Babyen er nå ca. 25 cm.</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 24</div><div class="week-info"><h4>Levedyktighetsgrensen 🌟</h4><p>Nå regnes babyen som levedyktig utenfor magen med intensiv behandling. Ca. 30 cm og 600 gram. Øyne begynner å åpne og lukke seg.</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 26</div><div class="week-info"><h4>Babyen kan se! 👁️</h4><p>Ca. 35 cm og 760 gram. Øynene er åpne og reagerer på lys. Lungene modnes kraftig. Hjernen vokser raskt – legg deg og hvil etter store måltider.</p></div></div>
+      </div>
+
+      <h3 style="font-size:1.5rem;margin:32px 0 20px;">Vanlige plager i 2. trimester</h3>
+      <div class="symptom-grid">
+        <div class="symptom-card"><div class="symptom-icon">🦵</div><h4>Bekkenløsning</h4><p>Rammer 20–30%. Fysioterapeut og støttebelte hjelper</p></div>
+        <div class="symptom-card"><div class="symptom-icon">🔥</div><h4>Halsbrann</h4><p>Livmoren presser på magesekken. Spis lite og hyppig</p></div>
+        <div class="symptom-card"><div class="symptom-icon">🦟</div><h4>Strekmerker</h4><p>Genetikk avgjør mest, men fukt huden godt</p></div>
+        <div class="symptom-card"><div class="symptom-icon">😴</div><h4>Søvnproblemer</h4><p>Sideleie med pute mellom knærne hjelper</p></div>
+        <div class="symptom-card"><div class="symptom-icon">🩸</div><h4>Tannkjøttbetennelse</h4><p>Hormoner gjør tannkjøttet ømfintlig – tannlege-besøk anbefales</p></div>
+        <div class="symptom-card"><div class="symptom-icon">💪</div><h4>Ryggsmerter</h4><p>Vekten forskyver tyngdepunktet. Svøm eller gå i bassenget</p></div>
+      </div>
+    </div>
+
+    <!-- 3. TRIMESTER -->
+    <div class="trimester-content" id="trimester3">
+      <h2 style="font-size:2rem;margin-bottom:8px;">3. Trimester</h2>
+      <p style="color:var(--text-mid);margin-bottom:32px;">Uke 27–40: Målstreken nærmer seg! Babyen vokser fort, og du forbereder deg til den største dagen.</p>
+
+      <div class="week-timeline">
+        <div class="week-item"><div class="week-num">Uke 28</div><div class="week-info"><h4>Blodsukkertest & Rh 🩸</h4><p>Rutineundersøkelse med blodprøver. Svangerskapsdiabetes screenes. Ca. 37 cm og 1 kg. Babyen sover og er våken i regelmessige mønstre nå.</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 32</div><div class="week-info"><h4>Fødselsforberedende kurs 📚</h4><p>Nå bør du ha meldt deg på kurs. Babyen er ca. 42 cm og 1,8 kg. De fleste legger seg nå i fødselsstilling (hode ned). Rier (Braxton Hicks) er vanlig.</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 36</div><div class="week-info"><h4>Pakk fødselsbagen! 🧳</h4><p>Ca. 47 cm og 2,6 kg. Hodet legger seg ned i bekkenet. Du kan puste lettere men må tisse enda oftere! Kontakt sykehus ved rier hvert 5. min i 1 time.</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 38</div><div class="week-info"><h4>Full termin! 🌟</h4><p>Babyen er fullbåren. Ca. 49 cm og 3 kg. Kun 5% føder på eksakt termin – de fleste føder mellom uke 38 og 42. Vær tålmodig og hvil deg!</p></div></div>
+        <div class="week-item"><div class="week-num">Uke 40</div><div class="week-info"><h4>Termindag 🎉</h4><p>Gratulerer – du har gått hele veien! Men husk: termindato er et estimat. Sykehuset kontakter deg vanligvis etter uke 41 for vurdering av igangsetting.</p></div></div>
+      </div>
+
+      <h3 style="font-size:1.5rem;margin:28px 0 16px;">Tegn på at fødselen starter</h3>
+      <ul class="checklist">
+        <li><strong>Rier i mønster:</strong> Regelmessige, smertefulle rier som blir sterkere og tettere</li>
+        <li><strong>Vannet går:</strong> Ring sykehuset umiddelbart – reiser inn uansett rietid</li>
+        <li><strong>Bloody show:</strong> Rosa/blodig slim – kan komme timer til dager før</li>
+        <li><strong>Spenning og uro:</strong> Mange kjenner en instinktiv uro rett før</li>
+      </ul>
+
+      <div class="warn-box">
+        <h4>🚨 Ring sykehuset umiddelbart ved</h4>
+        <p>Vannlatning (mulig vannavgang), kraftige blødninger, babyen beveger seg ikke som normalt, sterke konstante magesmerter uten pause, høy feber, kraftig hodepine med synsforstyrrelser.</p>
+      </div>
+
+      <h3 style="font-size:1.5rem;margin:28px 0 16px;">📋 Huskeliste 3. trimester</h3>
+      <ul class="checklist">
+        <li>Meld deg på fødselsforberedende kurs</li>
+        <li>Pakk fødselsbagen (uke 36)</li>
+        <li>Lag fødselplan og diskuter med jordmor</li>
+        <li>Søk foreldrepenger (Nav.no – minst 3 uker før)</li>
+        <li>Kjøp inn det viktigste babyutstyret</li>
+        <li>Planlegg barseltid og støtte fra familien</li>
+        <li>Lær å telle fosterets bevegelser</li>
+      </ul>
+
+      <div class="ad-banner" style="padding:24px 0;">
+        <div class="ad-inner">
+          <span class="ad-label">Annonse</span>
+          <p>🛒 Sjekk vår babyutstyr-guide – hva trenger du egentlig? Sammenlign priser på vogn, bilstol og ammepute</p>
+          <a href="#" class="btn-ghost btn-sm">Se guide →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo"><span class="logo-icon">🌿</span><span class="logo-text">Babyguiden<span class="logo-dot">.no</span></span></div><p>Ærlige råd for norske foreldre – fra svangerskapstesten til toårsdagen.</p></div>
+      <div class="footer-links"><h4>Graviditet</h4><a href="#">1. trimester</a><a href="#">2. trimester</a><a href="#">3. trimester</a></div>
+      <div class="footer-links"><h4>Baby</h4><a href="sovn.html">Søvn</a><a href="mat.html">Mat</a><a href="utvikling.html">Utvikling</a></div>
+      <div class="footer-links"><h4>Verktøy</h4><a href="kalkulator.html">Kalkulatorer</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Babyguiden.no · Innholdet erstatter ikke medisinsk råd.</p></div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

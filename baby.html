@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91HT20F9NY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-91HT20F9NY');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baby 0–2 år – Søvn, mat, utvikling og milepæler | Babyguiden.no</title>
+  <meta name="description" content="Alt om baby fra 0 til 2 år. Velg alder og finn skreddersydde råd om søvn, mat, utvikling og de røffe periodene.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .baby-age-nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+    .baby-age-btn { padding: 10px 20px; border-radius: 50px; border: 2px solid var(--border); background: white; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; color: var(--text-mid); }
+    .baby-age-btn:hover, .baby-age-btn.active { border-color: var(--sage); background: var(--sage); color: white; }
+    .age-section { display: none; }
+    .age-section.active { display: block; }
+    .content-tabs { display: flex; gap: 4px; background: var(--cream); border-radius: var(--radius); padding: 6px; margin-bottom: 32px; overflow-x: auto; }
+    .content-tab { flex-shrink: 0; padding: 10px 18px; border-radius: calc(var(--radius) - 4px); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; border: none; background: transparent; font-family: 'DM Sans', sans-serif; color: var(--text-mid); }
+    .content-tab.active { background: white; color: var(--sage-dark); box-shadow: 0 2px 12px var(--shadow); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .info-card { background: white; border-radius: var(--radius); padding: 28px; border: 1px solid var(--border); margin-bottom: 20px; }
+    .info-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .info-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; }
+    .warning-card { background: #FFF5F5; border: 1px solid #FFCDD2; border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; border-left: 4px solid #EF9A9A; }
+    .warning-card h4 { color: #C62828; margin-bottom: 6px; font-size: 1rem; }
+    .tip-card { background: var(--sage-light); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; border-left: 4px solid var(--sage-dark); }
+    .tip-card h4 { color: var(--sage-dark); margin-bottom: 6px; font-size: 1rem; }
+    .tips-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+    .tips-list li { font-size: 0.86rem; color: var(--text-mid); padding-left: 16px; position: relative; line-height: 1.5; }
+    .tips-list li::before { content: '→'; position: absolute; left: 0; color: var(--sage); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">🌿</span><span class="logo-text">Babyguiden<span class="logo-dot">.no</span></span></a>
+    <nav class="main-nav">
+      <a href="graviditet.html">Graviditet</a>
+      <a href="baby.html" style="color:var(--sage-dark);font-weight:600;">Baby 0–2 år</a>
+      <a href="sovn.html">Søvn</a>
+      <a href="mat.html">Mat</a>
+      <a href="utvikling.html">Utvikling</a>
+      
+      <a href="kalkulator.html" class="nav-cta">Kalkulatorer</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="graviditet.html">🤰 Graviditet</a>
+    <a href="baby.html">👶 Baby 0–2 år</a>
+    <a href="sovn.html">😴 Søvn</a>
+    <a href="mat.html">🥣 Mat</a>
+    <a href="utvikling.html">🌱 Utvikling</a>
+    
+    <a href="kalkulator.html">🧮 Kalkulatorer</a>
+  </div>
+</header>
+
+<section class="page-hero" style="background: linear-gradient(135deg, var(--cream), var(--sage-light));">
+  <p class="hero-eyebrow" style="background:white;color:var(--sage-dark);">👶 Tilpasset innhold</p>
+  <h1>Baby 0–2 år</h1>
+  <p>Velg barnets alder for å få skreddersydde råd om søvn, mat, utvikling og de røffe periodene.</p>
+</section>
+
+<div class="container" style="padding-top:48px;">
+
+  <!-- AGE SELECTOR -->
+  <div class="baby-age-nav">
+    <button class="baby-age-btn active" onclick="setAge('0-3', this)">👶 0–3 mnd</button>
+    <button class="baby-age-btn" onclick="setAge('4-6', this)">🙂 4–6 mnd</button>
+    <button class="baby-age-btn" onclick="setAge('7-9', this)">🧐 7–9 mnd</button>
+    <button class="baby-age-btn" onclick="setAge('10-12', this)">🚶 10–12 mnd</button>
+    <button class="baby-age-btn" onclick="setAge('1-2', this)">🏃 1–2 år</button>
+  </div>
+
+  <!-- 0-3 måneder -->
+  <div class="age-section active" id="age-0-3">
+    <h2 style="font-size:2rem;margin-bottom:4px;">0–3 måneder: Det nyfødte mirakelet</h2>
+    <p style="color:var(--text-mid);margin-bottom:28px;">De første ukene er intense, utmattende og magiske på én gang. Her er alt du trenger å vite.</p>
+    <div class="content-tabs" id="tabs-0-3">
+      <button class="content-tab active" onclick="setTab('0-3', 'sovn', this)">😴 Søvn</button>
+      <button class="content-tab" onclick="setTab('0-3', 'mat', this)">🍼 Mat</button>
+      <button class="content-tab" onclick="setTab('0-3', 'utvikling', this)">🌱 Utvikling</button>
+      <button class="content-tab" onclick="setTab('0-3', 'rough', this)">🌊 Røffe perioder</button>
+      <button class="content-tab" onclick="setTab('0-3', 'milepæler', this)">🏆 Milepæler</button>
+    </div>
+    <div class="tab-content active" id="0-3-sovn">
+      <div class="info-card"><h3>😴 Søvn 0–3 måneder</h3><p>Nyfødte sover 14–17 timer i døgnet – men aldri mer enn 2–4 timer i strekk. Det er biologisk normalt og <strong>ikke</strong> noe du kan trene bort de første ukene. Hjernen er ikke moden nok til å sove lengre enn som så.</p></div>
+      <div class="warning-card"><h4>«Babyen min sover ikke – er noe galt?»</h4><p>Hvis babyen sover under 12 timer totalt, alltid virker sulten, gråter kontinuerlig uten trøst eller har feber – kontakt legen. Men de aller fleste «dårlige sovere» er helt normale.</p></div>
+      <div class="tip-card"><h4>💡 Tips som faktisk hjelper</h4><ul class="tips-list"><li>Swaddle (faststrikking) demper moro-refleksen som vekker dem</li><li>Hvit støy (vifte, vask) minner om lyder fra livmoren</li><li>La dem sove på deg – babybæring er ikke «feil»</li><li>Skift nattevakter med partner – søvnmangel er reelt farlig</li><li>Sov når babyen sover, selv om det er midt på dagen</li></ul></div>
+    </div>
+    <div class="tab-content" id="0-3-mat">
+      <div class="info-card"><h3>🍼 Amming og mat 0–3 måneder</h3><p>Nyfødte trenger mat hvert 2.–3. time, altså 8–12 ganger i døgnet. Morsmelk produseres etter tilbud og etterspørsel – jo mer babyen spiser, jo mer produserer du. De første dagene kommer råmelk (kolostrum) som er supernæring i miniporsjoner.</p></div>
+      <div class="warning-card"><h4>«Babyen min taper vekt – er det normalt?»</h4><p>Alle nyfødte taper 5–10% av fødselsvekten de første dagene. Det er normalt. De bør tilbake til fødselsvekt innen 10–14 dager. Kontakt jordmor/lege hvis vekttapet er over 10% eller ikke stopper.</p></div>
+      <div class="tip-card"><h4>💡 Ammings-tips</h4><ul class="tips-list"><li>Tiltak tidlig: God inntaket første timer setter i gang produksjonen</li><li>Se på «gylne timer» – hud-mot-hud rett etter fødsel</li><li>Morsmelkerstatning er ikke svikt – det er mat</li><li>Få hjelp fra ammekonsulent (gratis via helsestasjonen)</li></ul></div>
+    </div>
+    <div class="tab-content" id="0-3-utvikling">
+      <div class="info-card"><h3>🌱 Utvikling 0–3 måneder</h3><p>Hjernen vokser enormt – babyen lærer å se skarpt (kun 20–30 cm de første ukene), gjenkjenne stemmer og regulere seg selv. Snakk, syng og hold babyen mye!</p></div>
+    </div>
+    <div class="tab-content" id="0-3-rough">
+      <div class="info-card"><h3>🌊 Kolikk – den hardeste fasen</h3><p>Kolikk defineres som gråting 3+ timer/dag, 3+ dager/uke, 3+ uker hos en frisk baby. Rammer 20–25% av nyfødte, er verst uke 6 og avtar vanligvis ved uke 12–16. Ingen vet helt hva som forårsaker det. <strong>Det er ikke din feil.</strong></p></div>
+      <div class="warning-card"><h4>«Jeg klarer ikke mer»</h4><p>Legg babyen trygt ned i sengen og forlat rommet i 5–10 minutter. Ring noen. Ta en pause. En kortere pause gjør deg til en bedre forelder, ikke en dårlig en. Ring helsestasjonen – de er der for dette.</p></div>
+    </div>
+    <div class="tab-content" id="0-3-milepæler">
+      <div class="info-card"><h3>🏆 Milepæler 0–3 måneder</h3></div>
+      <div class="week-timeline">
+        <div class="week-item"><div class="week-num" style="background:var(--blush);">6 uker</div><div class="week-info"><h4>Det første sosiale smilet 😊</h4><p>Ikke reflex-smil, men et ekte, sosialt smil som respons på ansiktet ditt. Et av de store øyeblikkene i tidlig foreldrskap.</p></div></div>
+        <div class="week-item"><div class="week-num" style="background:var(--peach);">8 uker</div><div class="week-info"><h4>Lyder og «gooo» 🗣️</h4><p>Begynner å lage vokallyder. Svarer når du snakker. Dette er starten på kommunikasjon!</p></div></div>
+        <div class="week-item"><div class="week-num" style="background:var(--sage);">3 mnd</div><div class="week-info"><h4>Løfter hodet 💪</h4><p>På magen klarer de å løfte hodet 45–90 grader. Mageleie-øvelser fra uke 1 hjelper på dette.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-6 måneder -->
+  <div class="age-section" id="age-4-6">
+    <h2 style="font-size:2rem;margin-bottom:4px;">4–6 måneder: Babyen våkner til live</h2>
+    <p style="color:var(--text-mid);margin-bottom:28px;">Mer sosial, mer aktiv og snart klar for fast føde. Men 4-månedersregresjonen tar mange på senga.</p>
+    <div class="content-tabs">
+      <button class="content-tab active" onclick="setTab('4-6', 'sovn', this)">😴 Søvn</button>
+      <button class="content-tab" onclick="setTab('4-6', 'mat', this)">🥣 Mat</button>
+      <button class="content-tab" onclick="setTab('4-6', 'utvikling', this)">🌱 Utvikling</button>
+      <button class="content-tab" onclick="setTab('4-6', 'rough', this)">🌊 Røffe perioder</button>
+      <button class="content-tab" onclick="setTab('4-6', 'milepæler', this)">🏆 Milepæler</button>
+    </div>
+    <div class="tab-content active" id="4-6-sovn">
+      <div class="warning-card"><h4>«Babyen sov 5 timer i strekk og nå er vi tilbake til hvert 1,5 time – hva skjer?!»</h4><p>Du har truffet 4-månedersregresjonen. Søvnarkitekturen endres permanent rundt uke 16–19. Babyen begynner å sove som en voksen (i sykluser) men kan ikke koble seg til søvn uten deg ennå. Det er normalt og vil bedre seg.</p></div>
+      <div class="tip-card"><h4>💡 Gjennom regresjonen</h4><ul class="tips-list"><li>Tål det – det varer vanligvis 2–6 uker</li><li>Begynn forsiktig søvntrening fra 4–6 måneder hvis du vil</li><li>Rutine, rutine, rutine – samme leggetid hver kveld</li><li>Soveroms-miljøet: mørkt, kjølig (18–20°C), hvit støy</li></ul></div>
+    </div>
+    <div class="tab-content" id="4-6-mat">
+      <div class="info-card"><h3>🥣 Starte med fast føde – uke 17–26</h3><p>WHO anbefaler 6 måneder full amming, men mange starter forsiktig fra uke 17–18. Tegn på matklarhet: Sitter med støtte, har mistet tungedytt-refleksen, viser interesse for mat. Start med grøt, moset grønnsak eller BLW (baby-ledet weaning).</p></div>
+      <div class="tip-card"><h4>💡 Matintroduksjons-tips</h4><ul class="tips-list"><li>Introduser ett nytt allergen om gangen (ta 3 dager mellom)</li><li>Allergener tidlig (peanøtt, egg, fisk) kan redusere allergirisiko</li><li>BLW vs. moset – begge metoder er fine, det handler om deg og babyen</li><li>Forvent mye mat på gulvet – det er læring, ikke sløsing</li></ul></div>
+    </div>
+    <div class="tab-content" id="4-6-utvikling">
+      <div class="info-card"><h3>🌱 Utvikling 4–6 måneder</h3><p>Stor utvikling! Babyen snur seg, griper gjenstander med begge hender, kjenner igjen seg selv i speil og ler høyt. Separasjonsangst begynner å dukke opp – helt normalt.</p></div>
+    </div>
+    <div class="tab-content" id="4-6-rough">
+      <div class="info-card"><h3>🌊 Vekstspurter og regresjon</h3><p>Vekstspurter skjer rundt uke 19, 26 og 37 (sett fra fødsel). Babyen er mer sulten, mer klengete og sover dårligere. Varer 2–7 dager. Etter spurten er babyen merkbart mer utviklet.</p></div>
+    </div>
+    <div class="tab-content" id="4-6-milepæler">
+      <div class="week-timeline">
+        <div class="week-item"><div class="week-num" style="background:var(--sage);">4 mnd</div><div class="week-info"><h4>Snur seg 🔄</h4><p>Fra mage til rygg, deretter fra rygg til mage. Stopp å legge dem alene på stellebordet!</p></div></div>
+        <div class="week-item"><div class="week-num" style="background:var(--blush);">5 mnd</div><div class="week-info"><h4>Sitter med støtte 🧸</h4><p>Trenger fortsatt hjelp, men ryggen styrkes raskt. Spiller med leker med begge hender.</p></div></div>
+        <div class="week-item"><div class="week-num" style="background:var(--peach);">6 mnd</div><div class="week-info"><h4>Sitter selvstendig (noen) 🎉</h4><p>De fleste sitter stabilt mellom uke 28–32. Mat-interesse og tanngjennombrudd er typisk.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7-9 måneder -->
+  <div class="age-section" id="age-7-9">
+    <h2 style="font-size:2rem;margin-bottom:4px;">7–9 måneder: Utforskeren</h2>
+    <p style="color:var(--text-mid);margin-bottom:28px;">Krabber, peker, separasjonsangst og matstreik. Et spennende og utfordrende kvartal!</p>
+    <div class="content-tabs">
+      <button class="content-tab active" onclick="setTab('7-9', 'sovn', this)">😴 Søvn</button>
+      <button class="content-tab" onclick="setTab('7-9', 'mat', this)">🥣 Mat</button>
+      <button class="content-tab" onclick="setTab('7-9', 'utvikling', this)">🌱 Utvikling</button>
+      <button class="content-tab" onclick="setTab('7-9', 'rough', this)">🌊 Røffe perioder</button>
+      <button class="content-tab" onclick="setTab('7-9', 'milepæler', this)">🏆 Milepæler</button>
+    </div>
+    <div class="tab-content active" id="7-9-sovn">
+      <div class="info-card"><h3>😴 Søvn 7–9 måneder</h3><p>De fleste babies på 8 mnd trenger 2 dagslurer (morgen og ettermiddag) og 10–12 timers nattesøvn. Mange kan nå sove 6–8 timer i strekk – men det er ikke garantert!</p></div>
+      <div class="warning-card"><h4>«Babyen min på 8 mnd sover fortsatt ikke gjennom natten»</h4><p>Ca. 60% av babies på 9 måneder vekner fortsatt 1–2 ganger per natt. Det er normalt. Nattmating er biologisk normalt og reduserer ikke nødvendigvis risikoen for allergi. Men søvntrening er trygt fra 6 måneder om du trenger det.</p></div>
+    </div>
+    <div class="tab-content" id="7-9-mat">
+      <div class="warning-card"><h4>«Babyen min på 8 mnd spiser ingenting – bare bryst!»</h4><p>Matstreik er ekstremt vanlig 7–9 måneder. Babyen er distrahert, tannpinen gjør det vondt å spise, og bryst er trygt og kjent. Legg frem mat uten press, spis sammen og stol på at de spiser nok så lenge vekten er stabil.</p></div>
+      <div class="tip-card"><h4>💡 Matstreik-strategier</h4><ul class="tips-list"><li>Aldri mat på tvang – det forverrer alltid</li><li>Spis samme mat som dem ved bordet</li><li>Gi fingermats-biter (BLW) – kontroll gir trygghet</li><li>Tannpine? Gi kald gulrot å gnage på før maten</li><li>Etter bryst, ikke før – sult er din beste venn</li></ul></div>
+    </div>
+    <div class="tab-content" id="7-9-utvikling">
+      <div class="info-card"><h3>🌱 Separasjonsangst – helt normalt</h3><p>Rundt 8–9 måneder skjer noe kognitivt: babyen skjønner at ting og personer finnes selv når de ikke ser dem (objektpermanens). Dette betyr de nå vet at du finnes – og savner deg! Separasjonsangst er et tegn på sunn kognitiv utvikling.</p></div>
+    </div>
+    <div class="tab-content" id="7-9-rough">
+      <div class="info-card"><h3>🦷 Tannpine – en lang periode</h3><p>Første tenner kommer som regel mellom 6–10 måneder. Symptomer: tygger på alt, drøvler mye, irritabel, søvnproblemer, evt. lav feber. Tannpine-gel er lite dokumentert, men paracetamol kan hjelpe akutt.</p></div>
+    </div>
+    <div class="tab-content" id="7-9-milepæler">
+      <div class="week-timeline">
+        <div class="week-item"><div class="week-num" style="background:var(--sage);">7 mnd</div><div class="week-info"><h4>Krabber! 🐛</h4><p>Noen starter med magekrabbing, andre hopper direkte til krabbing på alle fire. Noen hopper over det helt og reiser seg rett. Alt er normalt.</p></div></div>
+        <div class="week-item"><div class="week-num" style="background:var(--blush);">8 mnd</div><div class="week-info"><h4>Peker og forstår «nei» 👆</h4><p>Begynner å peke på ting de vil ha. Forstår tonefall og enkle ord.</p></div></div>
+        <div class="week-item"><div class="week-num" style="background:var(--peach);">9 mnd</div><div class="week-info"><h4>Reiser seg og vinker 👋</h4><p>Klamrer seg opp langs møbler. Vinker «heisann» og «hadde». Kan si «mama» og «dada» (ikke nødvendigvis til rett person).</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10-12 måneder -->
+  <div class="age-section" id="age-10-12">
+    <h2 style="font-size:2rem;margin-bottom:4px;">10–12 måneder: Snart ett år!</h2>
+    <p style="color:var(--text-mid);margin-bottom:28px;">Enorm utvikling, første ord, første steg – og «nei!» som nytt favorittord.</p>
+    <div class="content-tabs">
+      <button class="content-tab active" onclick="setTab('10-12', 'sovn', this)">😴 Søvn</button>
+      <button class="content-tab" onclick="setTab('10-12', 'mat', this)">🥣 Mat</button>
+      <button class="content-tab" onclick="setTab('10-12', 'utvikling', this)">🌱 Utvikling</button>
+      <button class="content-tab" onclick="setTab('10-12', 'rough', this)">🌊 Røffe perioder</button>
+      <button class="content-tab" onclick="setTab('10-12', 'milepæler', this)">🏆 Milepæler</button>
+    </div>
+    <div class="tab-content active" id="10-12-sovn">
+      <div class="info-card"><h3>😴 Søvn 10–12 måneder</h3><p>De fleste babies nå: 2 lurer (noen er klare for 1), 10–12 timers natt. Leggetid rundt 19–20 bør etableres. Separasjonsangst gjør leggetid vanskelig – vær konsekvent men varm.</p></div>
+    </div>
+    <div class="tab-content" id="10-12-mat">
+      <div class="warning-card"><h4>«Barnet mitt på 10 mnd spiser ingenting»</h4><p>10-månedersmatstreik er en av de vanligste søkefrasene. Det er reelt og frustrerende. Babyen er nå distrahert av verden, tannpine preger mange, og de tester grenser. Fortsett å tilby, spis selv, og stol på at de spiser nok (vekten er fasiten).</p></div>
+      <div class="tip-card"><h4>💡 Mat-strategier 10–12 mnd</h4><ul class="tips-list"><li>Del opp i 3 måltider + 2 mellommåltider</li><li>Kutt ned på amming/flaske mellom måltider – sult er motivasjon</li><li>Familiemat! De vil spise det du spiser</li><li>Fingermats-biter: myk pasta, bananskiver, brødskive med avocado</li></ul></div>
+    </div>
+    <div class="tab-content" id="10-12-utvikling">
+      <div class="info-card"><h3>🌱 Første ord og kommunikasjon</h3><p>De fleste babies sier sitt første meningsfulle ord mellom 9–14 måneder. «Mama», «dada», «nei» og «mer» er typiske. Noen starter med mange ord tidlig, andre sier lite men forstår masse. Bekymre deg ikke under 14–15 måneder uten ord.</p></div>
+    </div>
+    <div class="tab-content" id="10-12-rough">
+      <div class="info-card"><h3>🌊 9-månedersregresjon</h3><p>Ja, det finnes en til! Rundt 8–10 måneder slutter mange babies å sove gjennom igjen. Koblet til stor kognitiv utvikling, separasjonsangst og motorisk spring. Varer 2–6 uker.</p></div>
+    </div>
+    <div class="tab-content" id="10-12-milepæler">
+      <div class="week-timeline">
+        <div class="week-item"><div class="week-num" style="background:var(--sage);">10 mnd</div><div class="week-info"><h4>Går langs møbler 🛋️</h4><p>«Cruising» – holder seg i møbler og triller langs veggen. Noen starter med å gå fritt.</p></div></div>
+        <div class="week-item"><div class="week-num" style="background:var(--blush);">11 mnd</div><div class="week-info"><h4>Første selvstendige steg 👣</h4><p>Gjennomsnittet er 11–12 måneder men normalt alt fra 9 til 15 måneder.</p></div></div>
+        <div class="week-item"><div class="week-num" style="background:var(--peach);">12 mnd</div><div class="week-info"><h4>1 ÅR – Jubileum! 🎂</h4><p>Gjennomsnittlig 3× fødselsvekten. Sier 1–3 ord med mening. Peker. Deler leker (av og til).</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1-2 år -->
+  <div class="age-section" id="age-1-2">
+    <h2 style="font-size:2rem;margin-bottom:4px;">1–2 år: Toddler-tida</h2>
+    <p style="color:var(--text-mid);margin-bottom:28px;">Raserianfall, løping, enorm spraklæring og en vilje av stål. Velkom til toddler-perioden!</p>
+    <div class="content-tabs">
+      <button class="content-tab active" onclick="setTab('1-2', 'sovn', this)">😴 Søvn</button>
+      <button class="content-tab" onclick="setTab('1-2', 'mat', this)">🥣 Mat</button>
+      <button class="content-tab" onclick="setTab('1-2', 'utvikling', this)">🌱 Utvikling</button>
+      <button class="content-tab" onclick="setTab('1-2', 'rough', this)">🌊 Raserianfall</button>
+      <button class="content-tab" onclick="setTab('1-2', 'milepæler', this)">🏆 Milepæler</button>
+    </div>
+    <div class="tab-content active" id="1-2-sovn">
+      <div class="info-card"><h3>😴 Søvn 1–2 år</h3><p>Rundt 12–18 måneder går de fleste over til 1 dagslur (fra 2). Det er en tøff overgangsperiode. Total søvnbehov: 11–14 timer. Leggetid 19–20 fungerer best for de fleste.</p></div>
+      <div class="tip-card"><h4>💡 Overgang til 1 lur</h4><ul class="tips-list"><li>Flytt luren gradvis fremover mot kl. 12–13</li><li>Forvente 2–4 uker med kaos i overgangen</li><li>Kjøretid i bil er ikke et alternativ til lur – det går utover nattesøvnen</li></ul></div>
+    </div>
+    <div class="tab-content" id="1-2-mat">
+      <div class="info-card"><h3>🥣 Mat 1–2 år</h3><p>Nå spiser toddleren familiens mat. 3 måltider + 1–2 mellommåltider. Melk er fortsatt viktig (helmelk), men maks 5 dl/dag. Neofobi (avvisning av ny mat) er normalt og topper seg 2–6 år.</p></div>
+      <div class="warning-card"><h4>«Toddleren spiser bare pasta og brød»</h4><p>Neofobi rammer nesten alle toddlere. Det er et overlevelsesinstinkt fra steinalderen. Fortsett å tilby variert mat uten press. Det kan ta 10–15 eksponeringer for et barn aksepterer ny mat. Det går over!</p></div>
+    </div>
+    <div class="tab-content" id="1-2-utvikling">
+      <div class="info-card"><h3>🌱 Språk eksploderer</h3><p>Mellom 18 og 24 måneder skjer et lingvistisk big bang. Fra enkeltord til toordssetninger til hele setninger. Grensen for å vurdere logoped: Under 50 ord ved 24 måneder, eller ingen toordssetninger ved 24 måneder.</p></div>
+    </div>
+    <div class="tab-content" id="1-2-rough">
+      <div class="info-card"><h3>😤 Raserianfall – overlevelsesguide</h3><p>Toddlere har store følelser og liten impulskontroll. Hjernen er ikke ferdig utviklet. Raserianfall er normalt, ikke manipulasjon. Strategier: Hold deg rolig, vær fysisk nær, ikke prøv å argumentere midt i anfallet. Etter anfallet: kos og snakk om det.</p></div>
+      <div class="tip-card"><h4>💡 Under raserianfallet</h4><ul class="tips-list"><li>Ikke si «slutt», «hold opp» eller «du er dumsnill»</li><li>Sett deg på gulvet i nærheten – la dem komme til deg</li><li>Bruk få ord: «Jeg er her», «Det er lov å være sint»</li><li>Etter anfallet: klem og forsikring om kjærlighet, ikke straff</li></ul></div>
+    </div>
+    <div class="tab-content" id="1-2-milepæler">
+      <div class="week-timeline">
+        <div class="week-item"><div class="week-num" style="background:var(--sage);">12 mnd</div><div class="week-info"><h4>Går selvstendig 🚶</h4><p>Noen tidligere, noen ved 15 måneder. Begge er normalt.</p></div></div>
+        <div class="week-item"><div class="week-num" style="background:var(--blush);">18 mnd</div><div class="week-info"><h4>Løper og klatrer 🏃</h4><p>50+ ord. Bruker skje selv. Peker på bilder i bok. Elsker å bære ting.</p></div></div>
+        <div class="week-item"><div class="week-num" style="background:var(--peach);">24 mnd</div><div class="week-info"><h4>Toordssetninger 💬</h4><p>«Mer mat», «Ikke der», «Mama kom». 200–300 ord for mange. Begynnende rollelek.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-banner" style="padding:32px 0 48px;">
+    <div class="ad-inner">
+      <span class="ad-label">Annonse</span>
+      <p>👶 Norges beste babymagasin – 12 utgaver for kun 399 kr. Prøv gratis i 2 måneder</p>
+      <a href="#" class="btn-ghost btn-sm">Les mer →</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo"><span class="logo-icon">🌿</span><span class="logo-text">Babyguiden<span class="logo-dot">.no</span></span></div><p>Ærlige råd for norske foreldre – fra svangerskapstesten til toårsdagen.</p></div>
+      <div class="footer-links"><h4>Graviditet</h4><a href="graviditet.html">Uke for uke</a></div>
+      <div class="footer-links"><h4>Baby</h4><a href="sovn.html">Søvn</a><a href="mat.html">Mat</a><a href="utvikling.html">Utvikling</a></div>
+      <div class="footer-links"><h4>Verktøy</h4><a href="kalkulator.html">Kalkulatorer</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Babyguiden.no · Innholdet erstatter ikke medisinsk råd.</p></div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+function setAge(age, btn) {
+  document.querySelectorAll('.age-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.baby-age-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('age-' + age).classList.add('active');
+  btn.classList.add('active');
+}
+
+function setTab(age, tab, btn) {
+  const section = document.getElementById('age-' + age);
+  section.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  section.querySelectorAll('.content-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(age + '-' + tab).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

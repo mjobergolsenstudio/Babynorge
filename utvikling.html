@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91HT20F9NY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-91HT20F9NY');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fosterutvikling og babymilepæler | Babyguiden.no</title>
+<meta name="description" content="Følg fosterutviklingen uke for uke og babyens milepæler måned for måned. Interaktiv slider og detaljert utviklingsguide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .hero-utv { background: linear-gradient(135deg, #d4edda 0%, #d6ebf5 100%); padding: 80px 24px 60px; text-align: center; }
+  .hero-utv h1 { font-size: clamp(2rem,5vw,3.2rem); }
+  .hero-utv p { color: var(--text-mid); max-width: 560px; margin: 16px auto 0; font-size: 1.1rem; }
+
+  /* Section tabs */
+  .section-tabs { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 40px 0 32px; }
+  .section-tab { padding: 12px 28px; border-radius: 50px; border: 2px solid var(--border); background: white; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all .2s; color: var(--text-mid); }
+  .section-tab:hover { border-color: var(--sage); }
+  .section-tab.active { background: var(--sage); border-color: var(--sage); color: white; }
+  .section-panel { display: none; }
+  .section-panel.active { display: block; }
+
+  /* FETAL SLIDER */
+  .fetal-section { background: linear-gradient(135deg, var(--sage-light) 0%, var(--sky-light) 100%); border-radius: 28px; padding: 40px 32px; margin-bottom: 48px; }
+  .fetal-week-display { text-align: center; margin-bottom: 32px; }
+  .fetal-week-num { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--sage-dark); line-height: 1; }
+  .fetal-week-label { font-size: 1rem; color: var(--text-mid); font-weight: 600; margin-top: 4px; }
+
+  .week-slider-wrap { margin: 0 0 32px; }
+  .week-slider { width: 100%; -webkit-appearance: none; height: 8px; border-radius: 4px; background: rgba(255,255,255,0.6); outline: none; cursor: pointer; }
+  .week-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%; background: var(--sage-dark); border: 4px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: transform .15s; }
+  .week-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+  .week-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-light); margin-top: 6px; font-weight: 600; }
+
+  .trimester-markers { display: flex; gap: 8px; margin-bottom: 16px; }
+  .trimester-marker { flex: 1; padding: 6px; border-radius: 8px; text-align: center; font-size: 0.72rem; font-weight: 700; }
+  .t1 { background: rgba(255,182,193,0.5); color: #8B1A1A; }
+  .t2 { background: rgba(255,228,181,0.5); color: #8B5E3C; }
+  .t3 { background: rgba(144,238,144,0.5); color: #2d6e2d; }
+
+  .fetal-card { background: white; border-radius: 20px; padding: 28px; display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: start; }
+  @media (max-width: 600px) { .fetal-card { grid-template-columns: 1fr; } }
+
+  .fetal-size-viz { text-align: center; }
+  .fetal-emoji { font-size: 5rem; display: block; margin-bottom: 8px; animation: pop .3s ease; }
+  @keyframes pop { from { transform: scale(0.7); opacity: 0.5; } to { transform: scale(1); opacity: 1; } }
+  .fetal-size-bar { background: var(--cream); border-radius: 20px; padding: 12px; margin-top: 12px; }
+  .fetal-size-label { font-size: 0.75rem; color: var(--text-light); font-weight: 600; margin-bottom: 6px; }
+  .size-comparison { font-size: 0.9rem; font-weight: 700; color: var(--sage-dark); }
+
+  .fetal-info h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 16px; }
+  .fetal-detail { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; font-size: 0.88rem; color: var(--text-mid); }
+  .fetal-detail-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+  .fetal-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+  .fetal-stat { background: var(--cream); border-radius: 12px; padding: 10px; text-align: center; }
+  .fetal-stat-val { font-weight: 800; color: var(--sage-dark); font-size: 1rem; }
+  .fetal-stat-lbl { font-size: 0.68rem; color: var(--text-light); margin-top: 2px; }
+
+  /* MILESTONE TRACKER */
+  .milestone-section { margin-bottom: 48px; }
+  .age-selector { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .age-btn { padding: 8px 18px; border-radius: 50px; border: 2px solid var(--border); background: white; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all .2s; color: var(--text-mid); }
+  .age-btn:hover { border-color: var(--sage); }
+  .age-btn.active { background: var(--sage); border-color: var(--sage); color: white; }
+
+  .milestone-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+  .milestone-card { background: white; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px var(--shadow); border: 2px solid var(--border); cursor: pointer; transition: all .2s; position: relative; }
+  .milestone-card:hover { border-color: var(--sage); transform: translateY(-3px); }
+  .milestone-card.checked { border-color: var(--sage); background: linear-gradient(135deg, #d4edda, #f0fff0); }
+  .milestone-card.checked::after { content: '✓'; position: absolute; top: 12px; right: 14px; font-size: 1.2rem; color: var(--sage-dark); font-weight: 900; }
+  .milestone-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+  .milestone-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+  .milestone-desc { font-size: 0.8rem; color: var(--text-light); }
+  .milestone-typical { font-size: 0.72rem; color: var(--sage-dark); font-weight: 700; margin-top: 8px; }
+
+  .milestone-progress { background: white; border-radius: 16px; padding: 20px; margin-bottom: 24px; box-shadow: 0 2px 8px var(--shadow); display: flex; align-items: center; gap: 20px; }
+  .progress-bar-wrap { flex: 1; background: var(--border); border-radius: 10px; height: 10px; }
+  .progress-bar { height: 100%; background: var(--sage); border-radius: 10px; transition: width .5s; }
+  .progress-text { font-weight: 800; color: var(--sage-dark); white-space: nowrap; }
+
+  /* DEVELOPMENT TIMELINE */
+  .timeline { position: relative; padding-left: 32px; margin-bottom: 48px; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 3px; background: var(--sage-light); border-radius: 2px; }
+  .timeline-item { position: relative; margin-bottom: 32px; }
+  .timeline-dot { position: absolute; left: -27px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: var(--sage); border: 3px solid white; box-shadow: 0 0 0 2px var(--sage-light); }
+  .timeline-card { background: white; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px var(--shadow); }
+  .timeline-age { font-size: 0.75rem; font-weight: 800; color: var(--sage); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+  .timeline-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 8px; }
+  .timeline-milestones { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .timeline-badge { background: var(--sage-light); color: var(--sage-dark); padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+
+  .section-title { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 8px; }
+  .section-sub { color: var(--text-light); margin-bottom: 28px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">🌿</span> Babyguiden<span class="logo-dot">.no</span></a>
+    <nav class="main-nav">
+      <a href="graviditet.html">Graviditet</a>
+      <a href="baby.html">Baby</a>
+      <a href="sovn.html">Søvn</a>
+      <a href="mat.html">Mat</a>
+      <a href="utvikling.html" style="color:var(--sage-dark);font-weight:600;">Utvikling</a>
+      <a href="kalkulator.html" class="nav-cta">Kalkulatorer</a>
+    </nav>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="graviditet.html">🤰 Graviditet</a>
+    <a href="baby.html">👶 Baby 0–2 år</a>
+    <a href="sovn.html">😴 Søvn</a>
+    <a href="mat.html">🥣 Mat</a>
+    <a href="utvikling.html">🌱 Utvikling</a>
+    <a href="kalkulator.html">🧮 Kalkulatorer</a>
+  </nav>
+</header>
+
+<section class="hero-utv">
+  <div style="font-size:3rem;margin-bottom:16px">🌱</div>
+  <h1>Fosterutvikling og milepæler</h1>
+  <p>Følg utviklingen uke for uke under graviditeten, og mål babyens milepæler fra fødsel til 2 år.</p>
+</section>
+
+<main class="container" style="padding-top:48px">
+
+  <!-- MAIN TABS -->
+  <div class="section-tabs">
+    <button class="section-tab active" onclick="switchSection('foster', this)">🤰 Fosterutvikling</button>
+    <button class="section-tab" onclick="switchSection('milepæler', this)">⭐ Milepæler 0–2 år</button>
+    <button class="section-tab" onclick="switchSection('tidslinje', this)">📅 Tidslinje</button>
+  </div>
+
+  <!-- FETAL DEVELOPMENT -->
+  <div id="section-foster" class="section-panel active">
+    <h2 class="section-title">🤰 Fosterutviklingen uke for uke</h2>
+    <p class="section-sub">Dra slideren for å se hva som skjer i hver uke av svangerskapet</p>
+
+    <div class="fetal-section">
+      <div class="fetal-week-display">
+        <div class="fetal-week-num" id="weekNum">8</div>
+        <div class="fetal-week-label">uker inn i svangerskapet</div>
+      </div>
+
+      <div class="trimester-markers">
+        <div class="trimester-marker t1">1. trimester (uke 1–12)</div>
+        <div class="trimester-marker t2">2. trimester (uke 13–27)</div>
+        <div class="trimester-marker t3">3. trimester (uke 28–40)</div>
+      </div>
+
+      <div class="week-slider-wrap">
+        <input type="range" class="week-slider" min="4" max="40" value="8" id="weekSlider" oninput="updateFetal(this.value)">
+        <div class="week-labels"><span>Uke 4</span><span>Uke 10</span><span>Uke 16</span><span>Uke 22</span><span>Uke 28</span><span>Uke 34</span><span>Uke 40</span></div>
+      </div>
+
+      <div class="fetal-card" id="fetalCard">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MILESTONES -->
+  <div id="section-milepæler" class="section-panel">
+    <h2 class="section-title" id="milestones">⭐ Babyens milepæler</h2>
+    <p class="section-sub">Klikk på en milepæl når babyen mestrer den! Husk: alle babyer utvikler seg i sitt eget tempo.</p>
+
+    <div class="age-selector">
+      <button class="age-btn active" onclick="switchMilestones(0, this)">👶 0–3 mnd</button>
+      <button class="age-btn" onclick="switchMilestones(1, this)">🌱 3–6 mnd</button>
+      <button class="age-btn" onclick="switchMilestones(2, this)">🍼 6–9 mnd</button>
+      <button class="age-btn" onclick="switchMilestones(3, this)">🧸 9–12 mnd</button>
+      <button class="age-btn" onclick="switchMilestones(4, this)">🚶 12–18 mnd</button>
+      <button class="age-btn" onclick="switchMilestones(5, this)">🗣️ 18–24 mnd</button>
+    </div>
+
+    <div class="milestone-progress">
+      <span style="font-size:1.5rem">🏆</span>
+      <div style="flex:1">
+        <div style="font-weight:700;margin-bottom:6px" id="progressLabel">0 av 6 milepæler nådd</div>
+        <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+      </div>
+      <div class="progress-text" id="progressPct">0%</div>
+    </div>
+
+    <div class="milestone-grid" id="milestoneGrid"></div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div id="section-tidslinje" class="section-panel">
+    <h2 class="section-title">📅 Utviklingstidslinje 0–2 år</h2>
+    <p class="section-sub">En oversikt over hva du kan forvente i hvert kvartal</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-age">Fødsel – 1 måned</div>
+          <div class="timeline-title">Den nyfødte perioden</div>
+          <p style="font-size:0.88rem;color:var(--text-mid)">Babyen tilpasser seg livet utenfor livmoren. Alle sanser er aktive — særlig lukt og hørselen. Foretrekker mors stemme fremfor alle andre.</p>
+          <div class="timeline-milestones">
+            <span class="timeline-badge">Fokuserer på ansikter</span>
+            <span class="timeline-badge">Kroppens reflekser</span>
+            <span class="timeline-badge">Gråt som kommunikasjon</span>
+            <span class="timeline-badge">Sosialt smil (fra 4–6 uker)</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-age">2–3 måneder</div>
+          <div class="timeline-title">Oppvåkning og samspill</div>
+          <p style="font-size:0.88rem;color:var(--text-mid)">Babyen begynner å kommunisere aktivt. Smiler sosialt, lager lyder og følger bevegelser med øynene. Magestigsøvelse er viktig for å styrke nakken.</p>
+          <div class="timeline-milestones">
+            <span class="timeline-badge">Sosialt smil</span>
+            <span class="timeline-badge">Gurgling og vokaliseringer</span>
+            <span class="timeline-badge">Holder hodet oppe (mageleie)</span>
+            <span class="timeline-badge">Følger gjenstander med øynene</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-age">4–6 måneder</div>
+          <div class="timeline-title">Motorisk eksplosjon</div>
+          <p style="font-size:0.88rem;color:var(--text-mid)">Stor motorisk utvikling. Ruller fra mage til rygg, begynner å nå ut etter gjenstander og kan sitte med støtte. Begynner å vise interesse for fast mat.</p>
+          <div class="timeline-milestones">
+            <span class="timeline-badge">Ruller</span>
+            <span class="timeline-badge">Griper gjenstander</span>
+            <span class="timeline-badge">Sitter med støtte</span>
+            <span class="timeline-badge">Ler høyt</span>
+            <span class="timeline-badge">Klar for fast mat</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-age">7–9 måneder</div>
+          <div class="timeline-title">Selvstendighet og krabbing</div>
+          <p style="font-size:0.88rem;color:var(--text-mid)">Sitter selvstendig, mange begynner å krabbe. Separasjonsangst topper seg. Forstår "nei" og enkle ord. Pinsetgrepet utvikles.</p>
+          <div class="timeline-milestones">
+            <span class="timeline-badge">Sitter selvstendig</span>
+            <span class="timeline-badge">Krabbing</span>
+            <span class="timeline-badge">Pinsetgrep</span>
+            <span class="timeline-badge">Separasjonsangst</span>
+            <span class="timeline-badge">Bablebbling</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-age">10–12 måneder</div>
+          <div class="timeline-title">Første skritt og ord</div>
+          <p style="font-size:0.88rem;color:var(--text-mid)">Mange tar sine første skritt rundt 1 år (variasjon 9–15 mnd er normal). Sier første ord med mening ("mama", "dada"). Forstår enkle instruksjoner.</p>
+          <div class="timeline-milestones">
+            <span class="timeline-badge">Reiser seg</span>
+            <span class="timeline-badge">Første skritt</span>
+            <span class="timeline-badge">Første ord</span>
+            <span class="timeline-badge">Peker på ting</span>
+            <span class="timeline-badge">Vifter hei/ha det</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-age">12–18 måneder</div>
+          <div class="timeline-title">Utforsker verden</div>
+          <p style="font-size:0.88rem;color:var(--text-mid)">Går selvstendig, klatrer på alt. Ordforrådet vokser til 10–20 ord. Begynner lek ved siden av andre barn (parallelllek). Stor nysgjerrighet og vilje til å undersøke.</p>
+          <div class="timeline-milestones">
+            <span class="timeline-badge">Går selvstendig</span>
+            <span class="timeline-badge">10–20 ord</span>
+            <span class="timeline-badge">Klatrer</span>
+            <span class="timeline-badge">Gjenkjenner seg i speil</span>
+            <span class="timeline-badge">Enkle puslespill</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-age">18–24 måneder</div>
+          <div class="timeline-title">Språkeksplosjonen</div>
+          <p style="font-size:0.88rem;color:var(--text-mid)">Mange opplever en språkeksplosjon — fra 20–50 ord til over 200 ord på noen måneder. Begynner å sette sammen 2-ordsetninger. "Nei"-fasen starter.</p>
+          <div class="timeline-milestones">
+            <span class="timeline-badge">200+ ord</span>
+            <span class="timeline-badge">2-ordsetninger</span>
+            <span class="timeline-badge">Rollelek</span>
+            <span class="timeline-badge">Løper</span>
+            <span class="timeline-badge">Tegner streker</span>
+            <span class="timeline-badge">Nei-fasen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer style="background:var(--cream);border-top:1px solid var(--border);padding:40px 24px;margin-top:40px">
+  <div class="container" style="display:flex;gap:32px;flex-wrap:wrap;justify-content:space-between">
+    <div><div class="logo" style="margin-bottom:8px">🌿 Babyguiden.no</div><p style="font-size:0.8rem;color:var(--text-light);max-width:300px">Utviklingsmilstolper er veiledende. Stor variasjon er normalt. Kontakt helsesykepleier ved bekymring.</p></div>
+    <div style="display:flex;gap:32px;flex-wrap:wrap">
+      <div><h4 style="font-size:0.85rem;font-weight:700;margin-bottom:8px">Utvikling</h4><div style="display:flex;flex-direction:column;gap:4px;font-size:0.85rem"><a href="utvikling.html" style="color:var(--text-mid)">Fosterutvikling</a><a href="kalkulator.html" style="color:var(--text-mid)">Kalkulatorer</a></div></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function switchSection(sec, btn) {
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('section-' + sec).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── FETAL DATA ──
+const fetalData = {
+  4:  { emoji:'🫘', size:'Valmuefrø', length:'2 mm', weight:'< 1g', trimester:1, details:['Embryoet implanterer seg i livmorveggen', 'Grunnlaget for hjernen og ryggraden dannes', 'Det primitive hjertet begynner å dannes', 'Amnionvæsken begynner å fylle seg rundt embryoet'] },
+  5:  { emoji:'🌱', size:'Sesamfrø', length:'4 mm', weight:'< 1g', trimester:1, details:['Hjertet begynner å slå (ca. 80–85 slag/min)', 'Hode, hale og lemmer starter å forme seg', 'Nevralrøret (fremtidig hjerne og ryggmarg) lukker seg', 'Øreanlegg og øyebeger er synlig'] },
+  6:  { emoji:'🫐', size:'Blåbær', length:'6 mm', weight:'< 1g', trimester:1, details:['Ansiktstrekk begynner å dannes', 'Hendene er som luffer — fingre er ikke skilt ennå', 'Hjertet slår 100–160 slag per minutt', 'Lever, nyrer og lunger starter utvikling'] },
+  7:  { emoji:'🫐', size:'Blåbær (stor)', length:'10 mm', weight:'< 1g', trimester:1, details:['Alle viktige organer er i utvikling', 'Armene er synlige og begynner å vokse', 'Øyelokkene dannes (men er lukket)', 'Ørene tar form — babyens hørselsorganer utvikles'] },
+  8:  { emoji:'🍇', size:'Drue', length:'16 mm', weight:'1g', trimester:1, details:['Embryoet kalles nå et foster', 'Alle organer er anlagt og i utvikling', 'Fingrene begynner å skille seg', 'Fosteret begynner å bevege seg (du kjenner det ikke ennå)'] },
+  9:  { emoji:'🫒', size:'Olive', length:'23 mm', weight:'2g', trimester:1, details:['Fosteret kan bevege hendene og føttene', 'Tennanlegg dannes under tannkjøttet', 'Kjønnsceller er til stede, men kjønn er ikke synlig på ultralyd ennå', 'Hode utgjør halvparten av fosterlengden'] },
+  10: { emoji:'🍓', size:'Jordbær', length:'31 mm', weight:'4g', trimester:1, details:['Alle vitale organer er dannet', 'Fosteret kan sutte på tommelen', 'Fingeravtrykk begynner å danne seg', 'Fosteret svømmer rundt i amnionvæsken'] },
+  11: { emoji:'🍋', size:'Fiken', length:'41 mm', weight:'7g', trimester:1, details:['Nyrene produserer urin', 'Fosteret kan åpne og lukke hendene', 'Ytre genitalia begynner å differensiere', 'Diafragmaen (mellomgulvet) er dannet'] },
+  12: { emoji:'🍋', size:'Plomme', length:'54 mm', weight:'14g', trimester:1, details:['Første trimester er over!', 'Risiko for spontanabort faller dramatisk', 'Reflekser er til stede — reagerer på berøring', 'Kan sees på ultralyd med tydelig menneskelig form'] },
+  13: { emoji:'🍑', size:'Fersken', length:'74 mm', weight:'23g', trimester:2, details:['Andre trimester begynner', 'Fingeravtrykk er fullt dannet', 'Fosteret kan rynke pannen', 'Stemmelyder kan nå nå fosteret fra omverdenen'] },
+  14: { emoji:'🍋', size:'Sitron', length:'85 mm', weight:'43g', trimester:2, details:['Kjønn kan ofte bestemmes på ultralyd', 'Fosteret gjør pustelignende bevegelser', 'Hårvekst begynner (lanugo-hår)', 'Lever og milt er fullt funksjonelle'] },
+  16: { emoji:'🥑', size:'Avokado', length:'11,6 cm', weight:'100g', trimester:2, details:['Skjelettet endres fra brusk til bein', 'Øynene kan bevege seg (men er fortsatt lukket)', 'Fosteret kan høre stemmer og musikk', 'Bevegelser begynner å bli merkbare for mor'] },
+  18: { emoji:'🥒', size:'Slangeagurk', length:'14,2 cm', weight:'190g', trimester:2, details:['Øynene er utviklet og sensiitive for lys', 'Fosteret har etablert søvn-/våknescykluser', 'Vernix (hvit kremlignende substans) dekker huden', 'Mor kjenner oftest sparkene nå'] },
+  20: { emoji:'🍌', size:'Banan', length:'25 cm', weight:'300g', trimester:2, details:['Midtveis i svangerskapet!', 'Detaljert ultralyd gjøres oftest nå (uke 17–19)', 'Huden er gjennomsiktig og rød', 'Svelgerefleksen er aktiv — fosteret svelger amnionvæske'] },
+  22: { emoji:'🌽', size:'Maiskolbe', length:'27,8 cm', weight:'430g', trimester:2, details:['Øyelokkene åpner seg for første gang', 'Fingernegler er synlige', 'Fosteret kan reagere på høye lyder', 'Hjerneutvikling skjer raskt'] },
+  24: { emoji:'🌽', size:'Maiskolbe (stor)', length:'30 cm', weight:'600g', trimester:2, details:['Grensen for overlevelse utenfor livmoren (med intensivbehandling)', 'Lungene produserer surfaktant (nødvendig for pusting)', 'Ansiktstrekk ligner mer og mer på det ferdige barnets', 'Hørselssansen er velutviklet'] },
+  26: { emoji:'🥬', size:'Salat', length:'35 cm', weight:'760g', trimester:2, details:['Øynene åpner og lukker seg', 'Hjernebølger ligner på voksnes mønster', 'Fosteret responderer på lyd utenfor livmoren', 'Fett lagres under huden'] },
+  28: { emoji:'🍆', size:'Aubergine', length:'37,6 cm', weight:'1 kg', trimester:3, details:['Tredje trimester begynner', 'Fosteret er snudd (hode nedover) hos de fleste', 'REM-søvn er observert — fosteret drømmer kanskje!', 'Immunsystemet styrkes'] },
+  30: { emoji:'🥦', size:'Brokkoli', length:'39,9 cm', weight:'1,3 kg', trimester:3, details:['Hjernen vokser raskt og danner dype folder', 'Vekst er nå viktigste prioritet', 'Nyrene produserer ca. 500 ml urin per dag', 'Fosteret sparker kraftig og regelmessig'] },
+  32: { emoji:'🥥', size:'Kokosnøtt', length:'42,4 cm', weight:'1,7 kg', trimester:3, details:['Lanugo-håret forsvinner gradvis', 'Sukketilskudd slutter å være nødvendig', 'Øynene er blå hos de fleste nyfødte (uansett endelig farge)', 'Fosteret trener på å puste'] },
+  34: { emoji:'🍈', size:'Cantaloupe', length:'45 cm', weight:'2,1 kg', trimester:3, details:['Sentralnervesystemet er nesten ferdig utviklet', 'Immunglobuliner overføres fra mor (gir immunitet)', 'Mange babyer er snudd til hodelei nå', 'Huden er glattere — mer fett lagres'] },
+  36: { emoji:'🎃', size:'Liten gresskar', length:'47,4 cm', weight:'2,6 kg', trimester:3, details:['Ansett som nær-termin (early term fra uke 37)', 'Babyen slutter å bevege seg like mye (trangere)', 'Lungene er nesten ferdig modne', 'Hodet kan senke seg ned i bekkenet (engagement)'] },
+  38: { emoji:'🎃', size:'Gresskar', length:'49,8 cm', weight:'3,1 kg', trimester:3, details:['Fullgått svangerskat fra uke 37', 'Vernix-krem er redusert — huden ser ferdigere ut', 'Babyen er klar til å møte verden!', 'Morkaken begynner å aldres'] },
+  40: { emoji:'👶', size:'Vannmelon', length:'51 cm', weight:'3,4 kg', trimester:3, details:['Termin! (Bare 5% føder på termindatoen)', 'Babyen er fullt ferdig utviklet', 'Klær til bruk fra dag 1 er størrelse 50–56', 'Forvent fødsel mellom uke 37–42 — alt er normalt'] },
+};
+
+function getFetalData(week) {
+  const keys = Object.keys(fetalData).map(Number).sort((a,b) => a-b);
+  let closest = keys[0];
+  for (const k of keys) { if (k <= week) closest = k; }
+  return fetalData[closest];
+}
+
+function updateFetal(week) {
+  week = parseInt(week);
+  document.getElementById('weekNum').textContent = week;
+  const d = getFetalData(week);
+  const trimLabel = d.trimester === 1 ? '1. trimester' : d.trimester === 2 ? '2. trimester' : '3. trimester';
+  const trimColor = d.trimester === 1 ? '#e74c3c' : d.trimester === 2 ? '#e67e22' : '#27ae60';
+
+  document.getElementById('fetalCard').innerHTML = `
+    <div class="fetal-size-viz">
+      <span class="fetal-emoji">${d.emoji}</span>
+      <div style="font-weight:700;font-size:1rem;color:var(--text-dark)">${d.size}</div>
+      <div class="fetal-size-bar">
+        <div class="fetal-size-label">Størrelse</div>
+        <div class="size-comparison">~ ${d.length}</div>
+      </div>
+      <div class="fetal-stats">
+        <div class="fetal-stat"><div class="fetal-stat-val">${week}</div><div class="fetal-stat-lbl">Uker</div></div>
+        <div class="fetal-stat"><div class="fetal-stat-val">${d.weight}</div><div class="fetal-stat-lbl">Vekt</div></div>
+        <div class="fetal-stat"><div class="fetal-stat-val" style="color:${trimColor};font-size:0.75rem">${trimLabel}</div><div class="fetal-stat-lbl">Fase</div></div>
+      </div>
+    </div>
+    <div class="fetal-info">
+      <h3>Uke ${week} — hva skjer?</h3>
+      ${d.details.map(det => `<div class="fetal-detail"><span class="fetal-detail-icon">🌿</span><span>${det}</span></div>`).join('')}
+    </div>`;
+}
+
+updateFetal(8);
+
+// ── MILESTONES ──
+const milestonesData = [
+  [ // 0-3 mnd
+    { icon:'😊', title:'Sosialt smil', desc:'Smiler som respons på ditt smil', typical:'Typisk: 6–8 uker' },
+    { icon:'👀', title:'Øyekontakt', desc:'Holder øyekontakt i noen sekunder', typical:'Typisk: Fra fødselen' },
+    { icon:'🗣️', title:'Gurgling', desc:'Lager kurrende og gurglende lyder', typical:'Typisk: 6–8 uker' },
+    { icon:'💪', title:'Holder hodet', desc:'Løfter hodet i mageleie', typical:'Typisk: 1–2 måneder' },
+    { icon:'🎵', title:'Reagerer på lyd', desc:'Snur seg mot stemmer og lyder', typical:'Typisk: Fra fødselen' },
+    { icon:'✊', title:'Griper fingeren din', desc:'Holder fast med refleksgrep', typical:'Typisk: Fra fødselen' },
+  ],
+  [ // 3-6 mnd
+    { icon:'🔄', title:'Ruller', desc:'Ruller fra mage til rygg', typical:'Typisk: 4–5 måneder' },
+    { icon:'😂', title:'Ler høyt', desc:'Ler lydelig av morsomme ting', typical:'Typisk: 4 måneder' },
+    { icon:'🤲', title:'Griper leker', desc:'Rekker ut og griper gjenstander', typical:'Typisk: 4–5 måneder' },
+    { icon:'🪞', title:'Reagerer på speil', desc:'Smiler til seg selv i speilet', typical:'Typisk: 4–6 måneder' },
+    { icon:'🦵', title:'Bærer vekt', desc:'Kan bære vekt på bena med støtte', typical:'Typisk: 5–6 måneder' },
+    { icon:'🗣️', title:'Bablebbling', desc:'Sier "ba", "ma", "da" osv.', typical:'Typisk: 4–6 måneder' },
+  ],
+  [ // 6-9 mnd
+    { icon:'🪑', title:'Sitter selvstendig', desc:'Sitter uten støtte i minst 30 sek', typical:'Typisk: 7–8 måneder' },
+    { icon:'🐛', title:'Krabber', desc:'Forflytter seg på alle fire', typical:'Typisk: 7–10 måneder' },
+    { icon:'🤏', title:'Pinsetgrep', desc:'Plukker opp små ting med tommel og pekefinger', typical:'Typisk: 8–9 måneder' },
+    { icon:'🙈', title:'Peek-a-boo', desc:'Forstår og liker gjemsellek', typical:'Typisk: 7–8 måneder' },
+    { icon:'🚫', title:'Forstår "nei"', desc:'Stopper opp og ser på deg', typical:'Typisk: 6–8 måneder' },
+    { icon:'🍌', title:'Spiser fingerfood', desc:'Mater seg selv med biter', typical:'Typisk: 7–9 måneder' },
+  ],
+  [ // 9-12 mnd
+    { icon:'🏗️', title:'Reiser seg', desc:'Reiser seg ved hjelp av møbler', typical:'Typisk: 9–10 måneder' },
+    { icon:'👋', title:'Vifter hei', desc:'Vifter og peker på forespørsel', typical:'Typisk: 9–12 måneder' },
+    { icon:'👶', title:'Første ord', desc:'Sier ett ord med mening', typical:'Typisk: 10–14 måneder' },
+    { icon:'👉', title:'Peker', desc:'Peker på ting de vil ha eller ser', typical:'Typisk: 9–12 måneder' },
+    { icon:'🧩', title:'Imiterer', desc:'Kopierer lyder og handlinger', typical:'Typisk: 9–12 måneder' },
+    { icon:'🚶', title:'Første skritt', desc:'Tar selvstendig skritt uten støtte', typical:'Typisk: 9–15 måneder' },
+  ],
+  [ // 12-18 mnd
+    { icon:'🏃', title:'Går selvstendig', desc:'Går uten støtte i lengre tid', typical:'Typisk: 12–15 måneder' },
+    { icon:'📚', title:'Peker i bok', desc:'Peker på bilder du navngir', typical:'Typisk: 12–14 måneder' },
+    { icon:'🥄', title:'Bruker skje', desc:'Prøver å spise med skje selv', typical:'Typisk: 13–15 måneder' },
+    { icon:'🧱', title:'Stabler klosser', desc:'Stabler 2–3 klosser oppå hverandre', typical:'Typisk: 12–15 måneder' },
+    { icon:'🎭', title:'Rollelek', desc:'Later som om de ringer, spiser osv.', typical:'Typisk: 14–18 måneder' },
+    { icon:'🗺️', title:'Forstår instruksjoner', desc:'Henter gjenstander på forespørsel', typical:'Typisk: 12–15 måneder' },
+  ],
+  [ // 18-24 mnd
+    { icon:'💬', title:'2-ordsetninger', desc:'Setter sammen to ord ("mer mat")', typical:'Typisk: 18–24 måneder' },
+    { icon:'📖', title:'50+ ord', desc:'Har et vokabular på over 50 ord', typical:'Typisk: 18–24 måneder' },
+    { icon:'🖍️', title:'Tegner streker', desc:'Tegner frem-og-tilbake streker', typical:'Typisk: 18–24 måneder' },
+    { icon:'⬆️', title:'Klatrer opp trapper', desc:'Klatrer opp trapper med støtte', typical:'Typisk: 18–22 måneder' },
+    { icon:'🫂', title:'Viser empati', desc:'Trøster andre som er lei seg', typical:'Typisk: 18–24 måneder' },
+    { icon:'🧸', title:'Fantasilek', desc:'Leker med dukker og leker som om de er ekte', typical:'Typisk: 18–24 måneder' },
+  ],
+];
+
+let currentAgeGroup = 0;
+let checkedMilestones = JSON.parse(localStorage.getItem('milestones') || '{}');
+
+function switchMilestones(group, btn) {
+  currentAgeGroup = group;
+  document.querySelectorAll('.age-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMilestones();
+}
+
+function renderMilestones() {
+  const milestones = milestonesData[currentAgeGroup];
+  const key = `group_${currentAgeGroup}`;
+  if (!checkedMilestones[key]) checkedMilestones[key] = [];
+
+  const checked = checkedMilestones[key];
+  const pct = Math.round((checked.length / milestones.length) * 100);
+
+  document.getElementById('progressLabel').textContent = `${checked.length} av ${milestones.length} milepæler nådd`;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+
+  document.getElementById('milestoneGrid').innerHTML = milestones.map((m, i) => `
+    <div class="milestone-card ${checked.includes(i) ? 'checked' : ''}" onclick="toggleMilestone(${i})">
+      <span class="milestone-icon">${m.icon}</span>
+      <div class="milestone-title">${m.title}</div>
+      <div class="milestone-desc">${m.desc}</div>
+      <div class="milestone-typical">${m.typical}</div>
+    </div>`).join('');
+}
+
+function toggleMilestone(i) {
+  const key = `group_${currentAgeGroup}`;
+  if (!checkedMilestones[key]) checkedMilestones[key] = [];
+  const idx = checkedMilestones[key].indexOf(i);
+  if (idx >= 0) checkedMilestones[key].splice(idx, 1);
+  else checkedMilestones[key].push(i);
+  localStorage.setItem('milestones', JSON.stringify(checkedMilestones));
+  renderMilestones();
+}
+
+renderMilestones();
+</script>
+</body>
+</html>

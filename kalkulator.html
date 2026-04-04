@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91HT20F9NY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-91HT20F9NY');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baby- og graviditetskalkulatorer | Babyguiden.no</title>
+  <meta name="description" content="Gratis kalkulatorer for gravide og foreldre – termindato, vekst, søvn, ammemengde og mer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">🌿</span><span class="logo-text">Babyguiden<span class="logo-dot">.no</span></span></a>
+    <nav class="main-nav">
+      <a href="graviditet.html">Graviditet</a>
+      <a href="baby.html">Baby 0–2 år</a>
+      <a href="sovn.html">Søvn</a>
+      <a href="mat.html">Mat</a>
+      <a href="utvikling.html">Utvikling</a>
+      
+      <a href="kalkulator.html" class="nav-cta">Kalkulatorer</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="graviditet.html">🤰 Graviditet</a>
+    <a href="baby.html">👶 Baby 0–2 år</a>
+    <a href="sovn.html">😴 Søvn</a>
+    <a href="mat.html">🥣 Mat</a>
+    <a href="utvikling.html">🌱 Utvikling</a>
+    
+    <a href="kalkulator.html">🧮 Kalkulatorer</a>
+  </div>
+</header>
+
+<section class="page-hero" style="background: linear-gradient(135deg, var(--sage-light), var(--sky-light));">
+  <p class="hero-eyebrow" style="background:white;color:var(--sage-dark);">🧮 Gratis verktøy</p>
+  <h1>Baby- og graviditetskalkulatorer</h1>
+  <p>Enkle, pålitelige kalkulatorer som hjelper deg å forstå graviditet og barnets utvikling.</p>
+</section>
+
+<div class="container">
+  <div class="calc-grid" id="termin">
+
+    <!-- TERMINDATO -->
+    <div class="calc-card">
+      <div style="font-size:2.5rem;margin-bottom:12px;">📅</div>
+      <h3>Termindatokalkulator</h3>
+      <p class="calc-desc">Finn ut når babyen er forventet å komme. Basert på siste menstruasjon og sykluslengde (Naegeles regel).</p>
+      <label class="calc-label" for="sisteMenstruasjon">Første dag av siste menstruasjon</label>
+      <input type="date" id="sisteMenstruasjon" class="calc-input" onchange="beregnTermin()">
+      <label class="calc-label" for="syklusLengde">Sykluslengde (dager)</label>
+      <input type="number" id="syklusLengde" class="calc-input" value="28" min="21" max="35" onchange="beregnTermin()">
+      <div class="calc-result" id="terminResult">
+        <div class="result-label">Skriv inn dato over for å beregne</div>
+      </div>
+    </div>
+
+    <!-- GRAVIDITETSUKE -->
+    <div class="calc-card">
+      <div style="font-size:2.5rem;margin-bottom:12px;">🤰</div>
+      <h3>Hvilken uke er jeg i?</h3>
+      <p class="calc-desc">Vet du omtrent når du ble gravid? Finn ut hvilken graviditetsuke du er i nå.</p>
+      <label class="calc-label" for="befruktningsDato">Omtrentlig befrukningsdato (eller siste mensen)</label>
+      <input type="date" id="befruktningsDato" class="calc-input" onchange="beregnUke()">
+      <div class="calc-result" id="ukeResult">
+        <div class="result-label">Skriv inn dato over for å beregne</div>
+      </div>
+    </div>
+
+    <!-- SØVNKALKULATOR -->
+    <div class="calc-card">
+      <div style="font-size:2.5rem;margin-bottom:12px;">😴</div>
+      <h3>Søvnbehov for baby</h3>
+      <p class="calc-desc">Finn ut hvor mye søvn babyen din trenger basert på alder, inkludert natt og dagslurer.</p>
+      <label class="calc-label" for="sovnAlder">Barnets alder (måneder)</label>
+      <input type="number" id="sovnAlder" class="calc-input" placeholder="F.eks. 6" min="0" max="24" oninput="beregnSovn()">
+      <div class="calc-result" id="sovnResult">
+        <div class="result-label">Skriv inn alder over for å beregne</div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--text-light);margin-top:12px;">Basert på WHO og American Academy of Sleep Medicine anbefalinger.</p>
+    </div>
+
+    <!-- AMMEKALKULATOR -->
+    <div class="calc-card">
+      <div style="font-size:2.5rem;margin-bottom:12px;">🍼</div>
+      <h3>Ammekalkulator</h3>
+      <p class="calc-desc">Estimer daglig ammemengde og tidsbruk – nyttig for å vurdere om babyen får nok mat.</p>
+      <label class="calc-label" for="ammingAntall">Antall amminger per dag</label>
+      <input type="number" id="ammingAntall" class="calc-input" placeholder="F.eks. 8" min="4" max="20" oninput="beregnAmming()">
+      <label class="calc-label" for="ammingMinutt">Minutter per amming</label>
+      <input type="number" id="ammingMinutt" class="calc-input" placeholder="F.eks. 15" min="5" max="60" oninput="beregnAmming()">
+      <div class="calc-result" id="ammingResult">
+        <div class="result-label">Fyll inn feltene over for å beregne</div>
+      </div>
+    </div>
+
+    <!-- VEKSTKALKULATOR -->
+    <div class="calc-card">
+      <div style="font-size:2.5rem;margin-bottom:12px;">📏</div>
+      <h3>Vekst & utvikling</h3>
+      <p class="calc-desc">Sjekk om barnets vekt er innenfor normalen for alderen. Sammenlignet mot WHO-referansedata.</p>
+      <label class="calc-label" for="babyAlder">Barnets alder (måneder, 0–12)</label>
+      <input type="number" id="babyAlder" class="calc-input" placeholder="F.eks. 6" min="0" max="12" oninput="beregnVekst()">
+      <label class="calc-label" for="babyVekt">Barnets vekt (kg)</label>
+      <input type="number" id="babyVekt" class="calc-input" placeholder="F.eks. 7.5" step="0.1" oninput="beregnVekst()">
+      <label class="calc-label" for="babyHoyde">Barnets lengde (cm, valgfritt)</label>
+      <input type="number" id="babyHoyde" class="calc-input" placeholder="F.eks. 65" oninput="beregnVekst()">
+      <div class="calc-result" id="vekstResult">
+        <div class="result-label">Fyll inn felt over for å beregne</div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--text-light);margin-top:12px;">⚠️ Kalkulatoren er veiledende. Kontakt helsesykepleier ved bekymring.</p>
+    </div>
+
+    <!-- MORSMELK-ESTIMAT -->
+    <div class="calc-card">
+      <div style="font-size:2.5rem;margin-bottom:12px;">🧮</div>
+      <h3>Pumping & morsmelk-estimat</h3>
+      <p class="calc-desc">Beregn daglig morsmelkbehov og pumpeplan for babyer som får flaske.</p>
+      <label class="calc-label" for="pumpVekt">Barnets vekt (kg)</label>
+      <input type="number" id="pumpVekt" class="calc-input" placeholder="F.eks. 5.5" step="0.1" oninput="beregnPumping()">
+      <label class="calc-label" for="pumpAlder">Barnets alder (uker)</label>
+      <input type="number" id="pumpAlder" class="calc-input" placeholder="F.eks. 8" min="0" max="52" oninput="beregnPumping()">
+      <div class="calc-result" id="pumpResult">
+        <div class="result-label">Fyll inn feltene over for å beregne</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AD -->
+  <div class="ad-banner">
+    <div class="ad-inner">
+      <span class="ad-label">Annonse</span>
+      <p>🍼 Beste brystpumper 2024 – Se vår guide og sammenlign priser på Medela, Elvie og Spectra</p>
+      <a href="#" class="btn-ghost btn-sm">Se guide →</a>
+    </div>
+  </div>
+
+  <section style="padding: 40px 0 80px;">
+    <h2 style="font-size:1.8rem;margin-bottom:8px;">Vanlige spørsmål om kalkulator-resultatene</h2>
+    <p style="color:var(--text-mid);margin-bottom:32px;">Husk at alle resultater er estimater basert på gjennomsnittsverdier.</p>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+      <div style="background:white;border-radius:var(--radius);padding:24px;border:1px solid var(--border);">
+        <h4 style="font-size:1rem;margin-bottom:8px;">Er termindatoen nøyaktig?</h4>
+        <p style="font-size:0.85rem;color:var(--text-mid);">Kalkulatoren bruker Naegeles regel som gir ±14 dager. Ultralyd gir mer nøyaktig dato. Kun 5% føder på eksakt termin.</p>
+      </div>
+      <div style="background:white;border-radius:var(--radius);padding:24px;border:1px solid var(--border);">
+        <h4 style="font-size:1rem;margin-bottom:8px;">Hva om vekten er utenfor normen?</h4>
+        <p style="font-size:0.85rem;color:var(--text-mid);">Alle barn vokser i sin egen kurve. Viktigst er at kurven er jevn over tid, ikke enkeltmålinger. Ta alltid kontakt med helsesykepleier ved bekymring.</p>
+      </div>
+      <div style="background:white;border-radius:var(--radius);padding:24px;border:1px solid var(--border);">
+        <h4 style="font-size:1rem;margin-bottom:8px;">Amming – er estimatene pålitelige?</h4>
+        <p style="font-size:0.85rem;color:var(--text-mid);">Morsmelkproduksjon varierer enormt. Beste tegn på at babyen får nok: 6+ våte bleier per dag, jevn vektøkning og tilfreds baby etter amming.</p>
+      </div>
+      <div style="background:white;border-radius:var(--radius);padding:24px;border:1px solid var(--border);">
+        <h4 style="font-size:1rem;margin-bottom:8px;">Søvn – hva om babyen sover mer/mindre?</h4>
+        <p style="font-size:0.85rem;color:var(--text-mid);">Søvnbehov er individuelle. Anbefalingene er gjennomsnittet for alderen. En frisk, fornøyd baby som vokser normalt sover nok – uansett om det avviker litt.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo"><span class="logo-icon">🌿</span><span class="logo-text">Babyguiden<span class="logo-dot">.no</span></span></div><p>Ærlige råd for norske foreldre – fra svangerskapstesten til toårsdagen.</p></div>
+      <div class="footer-links"><h4>Graviditet</h4><a href="graviditet.html">Uke for uke</a><a href="kalkulator.html#termin">Termindato</a></div>
+      <div class="footer-links"><h4>Baby</h4><a href="sovn.html">Søvn</a><a href="mat.html">Mat</a><a href="utvikling.html">Utvikling</a></div>
+      <div class="footer-links"><h4>Verktøy</h4><a href="kalkulator.html">Alle kalkulatorer</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Babyguiden.no · Innholdet erstatter ikke medisinsk råd.</p></div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+function beregnPumping() {
+  const vekt = parseFloat(document.getElementById('pumpVekt')?.value);
+  const alder = parseInt(document.getElementById('pumpAlder')?.value);
+  if (!vekt || !alder) return;
+
+  // Ca. 150ml per kg per dag etter 2 uker
+  const faktor = alder < 2 ? 0.7 : alder < 4 ? 0.9 : 1.0;
+  const dagligMl = Math.round(vekt * 150 * faktor);
+  const antallMaltider = alder < 4 ? 8 : alder < 8 ? 7 : 6;
+  const perMalBml = Math.round(dagligMl / antallMaltider);
+
+  const result = document.getElementById('pumpResult');
+  if (result) {
+    result.innerHTML = `
+      <div class="result-label">Estimert daglig behov</div>
+      <div class="result-value">${dagligMl} ml/dag</div>
+      <div class="result-sub">Ca. ${perMalBml} ml per måltid · ${antallMaltider} måltider/dag</div>
+    `;
+  }
+}
+</script>
+</body>
+</html>
