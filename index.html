@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91HT20F9NY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-91HT20F9NY');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Babyguiden.no – Alt om graviditet, nyfødt og baby 0–2 år</title>
+<meta name="description" content="Norges beste guide for gravide og foreldre med baby 0–2 år. Søvn, mat, milepæler, utvikling og ærlige råd fra andre foreldre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.hero { background: linear-gradient(135deg, #fff8f0 0%, #fde8d0 50%, #fddbd8 100%); padding: 80px 24px 60px; text-align: center; }
+.hero-badge { display: inline-block; background: rgba(122,158,126,0.15); border: 1px solid rgba(122,158,126,0.3); padding: 6px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; color: var(--sage-dark); margin-bottom: 20px; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1.15; color: var(--text-dark); margin-bottom: 16px; }
+.hero-title em { font-style: italic; color: var(--sage); }
+.hero-sub { color: var(--text-mid); max-width: 520px; margin: 0 auto 28px; font-size: 1.05rem; line-height: 1.7; }
+.hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-secondary { display: inline-block; padding: 13px 28px; border-radius: 50px; border: 2px solid var(--sage); color: var(--sage-dark); font-weight: 600; font-size: 0.95rem; transition: all .2s; }
+.btn-secondary:hover { background: var(--sage); color: white; }
+
+.quick-links { padding: 60px 0; background: var(--warm-white); }
+.quick-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+.quick-card { background: white; border-radius: 20px; padding: 24px 16px; text-align: center; border: 1px solid var(--border); transition: all .2s; text-decoration: none; color: inherit; box-shadow: 0 2px 8px var(--shadow); }
+.quick-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px var(--shadow-md); border-color: var(--sage-light); }
+.quick-icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
+.quick-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: var(--text-dark); }
+.quick-card p { font-size: 0.75rem; color: var(--text-light); line-height: 1.5; }
+
+.featured-section { padding: 60px 0; background: var(--cream); }
+.section-header { margin-bottom: 28px; }
+.section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--sage); display: block; margin-bottom: 6px; }
+.section-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4vw, 2.2rem); color: var(--text-dark); }
+.featured-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.featured-big { grid-column: 1 / -1; }
+.featured-card { background: white; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); text-decoration: none; color: inherit; transition: all .2s; box-shadow: 0 2px 8px var(--shadow); }
+.featured-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow-md); }
+.featured-card-bg { height: 120px; display: flex; align-items: center; justify-content: center; }
+.featured-big .featured-card-bg { height: 160px; }
+.featured-card-body { padding: 16px; }
+.featured-tag { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: var(--sage); }
+.featured-card-body h3 { font-family: 'Playfair Display', serif; font-size: 1rem; margin: 6px 0 4px; color: var(--text-dark); }
+.featured-card-body p { font-size: 0.78rem; color: var(--text-light); }
+
+.articles-section { padding: 60px 0; background: var(--warm-white); }
+.articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.article-card { background: white; border-radius: 16px; padding: 22px; border: 1px solid var(--border); text-decoration: none; color: inherit; transition: all .2s; box-shadow: 0 2px 8px var(--shadow); }
+.article-card:hover { transform: translateY(-3px); border-color: var(--sage-light); }
+.article-cat { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: var(--sage); margin-bottom: 8px; }
+.article-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 6px; color: var(--text-dark); }
+.article-card p { font-size: 0.8rem; color: var(--text-light); line-height: 1.5; }
+
+.trust-section { padding: 60px 0; background: var(--cream); }
+.trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.trust-item { text-align: center; padding: 24px; }
+.trust-icon { font-size: 2.5rem; display: block; margin-bottom: 12px; }
+.trust-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: var(--text-dark); }
+.trust-item p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+
+.newsletter-section { padding: 60px 0; background: var(--warm-white); }
+.newsletter-box { background: linear-gradient(135deg, var(--sage-light), var(--blush-light)); border-radius: 28px; padding: 48px 32px; text-align: center; }
+.newsletter-box h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 4vw, 2rem); margin-bottom: 8px; color: var(--text-dark); }
+.newsletter-box p { color: var(--text-mid); margin-bottom: 24px; }
+.newsletter-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+.newsletter-input { flex: 1; min-width: 200px; padding: 13px 18px; border: 2px solid rgba(255,255,255,0.7); border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; background: rgba(255,255,255,0.8); outline: none; }
+.newsletter-input:focus { border-color: var(--sage); background: white; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">🌿</span> Babyguiden<span class="logo-dot">.no</span></a>
+    <nav class="main-nav">
+      <a href="graviditet.html">Graviditet</a>
+      <a href="baby.html">Baby</a>
+      <a href="sovn.html">Søvn</a>
+      <a href="mat.html">Mat</a>
+      <a href="utvikling.html">Utvikling</a>
+      <a href="kalkulator.html" class="nav-cta">Kalkulatorer</a>
+    </nav>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="graviditet.html">🤰 Graviditet</a>
+    <a href="baby.html">👶 Baby 0–2 år</a>
+    <a href="sovn.html">😴 Søvn</a>
+    <a href="mat.html">🥣 Mat & amming</a>
+    <a href="utvikling.html">🌱 Utvikling</a>
+    <a href="kalkulator.html">🧮 Kalkulatorer</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-badge">🌿 Norges tryggeste guide for nye foreldre</div>
+  <h1 class="hero-title">Du er ikke alene.<br><em>Ingen er.</em></h1>
+  <p class="hero-sub">Fra den første positive testen til toddler-kaos — vi er med deg hele veien. Ærlige råd, faglig kunnskap og varme for nye foreldre.</p>
+  <div class="hero-ctas">
+    <a href="graviditet.html" class="btn-primary">Jeg er gravid →</a>
+    <a href="baby.html" class="btn-secondary">Jeg har nyfødt</a>
+  </div>
+</section>
+
+<section class="quick-links">
+  <div class="container">
+    <div class="quick-grid">
+      <a href="graviditet.html" class="quick-card"><span class="quick-icon">🤰</span><h3>Graviditet</h3><p>Uke for uke — hva som skjer med deg og fosteret</p></a>
+      <a href="baby.html" class="quick-card"><span class="quick-icon">👶</span><h3>Baby 0–2 år</h3><p>Alt du trenger å vite om den første tiden</p></a>
+      <a href="sovn.html" class="quick-card"><span class="quick-icon">😴</span><h3>Søvn</h3><p>Søvnrytmer, søvntrening og hvit støy-maskin</p></a>
+      <a href="mat.html" class="quick-card"><span class="quick-icon">🥣</span><h3>Mat & amming</h3><p>Trygg mat, oppskrifter og ammeguide</p></a>
+      <a href="utvikling.html" class="quick-card"><span class="quick-icon">🌱</span><h3>Utvikling</h3><p>Fosterutvikling og milepæler 0–2 år</p></a>
+      <a href="kalkulator.html" class="quick-card"><span class="quick-icon">🧮</span><h3>Kalkulatorer</h3><p>Termindato, vekt, lengde og mer</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="featured-section">
+  <div class="container">
+    <div class="section-header"><span class="section-label">✨ Populært akkurat nå</span><h2>Det andre foreldre leser</h2></div>
+    <div class="featured-grid">
+      <a href="sovn.html" class="featured-card featured-big">
+        <div class="featured-card-bg" style="background:linear-gradient(135deg,#e8e2f5,#d6ebf5)"><span style="font-size:3.5rem">😴</span></div>
+        <div class="featured-card-body"><span class="featured-tag">Søvn</span><h3>Babysøvn — den komplette guiden</h3><p>Alt fra nyfødt til 2 år, hvit støy-maskin og søvntrening</p></div>
+      </a>
+      <a href="mat.html" class="featured-card">
+        <div class="featured-card-bg" style="background:linear-gradient(135deg,#fde8d0,#fddbd8)"><span style="font-size:2.5rem">🥣</span></div>
+        <div class="featured-card-body"><span class="featured-tag">Mat</span><h3>Trygg og utrygg mat for baby</h3><p>Søkbar database med 24+ matvarer</p></div>
+      </a>
+      <a href="utvikling.html" class="featured-card">
+        <div class="featured-card-bg" style="background:linear-gradient(135deg,#d4edda,#d6ebf5)"><span style="font-size:2.5rem">🌱</span></div>
+        <div class="featured-card-body"><span class="featured-tag">Utvikling</span><h3>Fosterutvikling uke for uke</h3><p>Interaktiv slider med størrelse og detaljer</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="articles-section">
+  <div class="container">
+    <div class="section-header"><span class="section-label">📖 Siste artikler</span><h2>Nytt fra redaksjonen</h2></div>
+    <div class="articles-grid">
+      <a href="graviditet.html" class="article-card"><div class="article-cat">Graviditet</div><h4>De 40 ukene — uke for uke guide</h4><p>Alt som skjer med deg og fosteret gjennom svangerskapet</p></a>
+      <a href="sovn.html" class="article-card"><div class="article-cat">Søvn</div><h4>4-månedersregresjonen — hva er det?</h4><p>Forstå hvorfor babyen plutselig sover mye dårligere</p></a>
+      <a href="mat.html" class="article-card"><div class="article-cat">Mat</div><h4>Første mat til baby — slik starter du</h4><p>Uke for uke plan for innføring av fast føde fra 4–6 måneder</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="trust-section">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item"><span class="trust-icon">👩‍⚕️</span><h4>Faglig kvalitetssikret</h4><p>Basert på oppdatert medisinsk kunnskap og norske retningslinjer</p></div>
+      <div class="trust-item"><span class="trust-icon">❤️</span><h4>Laget av foreldre</h4><p>Vi vet hvordan det er å stå opp klokken 3 med en skriende baby</p></div>
+      <div class="trust-item"><span class="trust-icon">🔒</span><h4>Trygt og uavhengig</h4><p>Ingen sponsede råd. Vi anbefaler kun det vi selv ville brukt</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-box">
+      <span style="font-size:2.5rem;display:block;margin-bottom:12px">💌</span>
+      <h2>Ukentlige tips rett i innboksen</h2>
+      <p>Tilpasset babyens alder — relevant, ærlig og aldri spam</p>
+      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="email" placeholder="din@epost.no" required class="newsletter-input">
+        <button type="submit" class="btn-primary">Meld meg på</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:12px">🌿 Babyguiden<span class="logo-dot">.no</span></div>
+        <p style="font-size:0.85rem;color:var(--text-light);max-width:280px">Norges tryggeste guide for nye foreldre.</p>
+      </div>
+      <div class="footer-links"><h4>Graviditet</h4><a href="graviditet.html">1. trimester</a><a href="graviditet.html#trimester2">2. trimester</a><a href="graviditet.html#trimester3">3. trimester</a><a href="kalkulator.html#termin">Termindato</a></div>
+      <div class="footer-links"><h4>Baby</h4><a href="sovn.html">Søvn</a><a href="mat.html">Mat & amming</a><a href="utvikling.html">Utvikling</a></div>
+      <div class="footer-links"><h4>Verktøy</h4><a href="kalkulator.html">Alle kalkulatorer</a><a href="utvikling.html#milepæler">Milepælskalender</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Babyguiden.no · <a href="#">Personvern</a> · <a href="#">Annonser</a> · Innholdet er veiledende og erstatter ikke medisinsk råd.</p></div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
