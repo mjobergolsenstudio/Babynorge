@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artikler – Babynorge</title>
+<meta name="description" content="Les alle artikler om baby, graviditet, søvn, mat og utvikling på Babynorge.no">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --terra: #c4714a;
+  --terra-dark: #a85a38;
+  --sage: #7a9e7e;
+  --forest: #3d6b42;
+  --cream: #fdf8f3;
+  --warm: #f5ede0;
+  --blush: #fdf0ed;
+  --rose: #f2c4b8;
+  --ink: #2a1f14;
+  --muted: #8a7060;
+  --border: #e8ddd4;
+  --white: #ffffff;
+  --shadow: 0 4px 24px rgba(42,31,20,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Nunito',sans-serif; background:var(--cream); color:var(--ink); }
+
+nav {
+  background:var(--white); border-bottom:1px solid var(--border);
+  padding:0 1.5rem; position:sticky; top:0; z-index:100;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+}
+.nav-inner {
+  max-width:1100px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between; height:64px;
+}
+.nav-logo {
+  font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900;
+  color:var(--terra); text-decoration:none;
+}
+.nav-back {
+  font-size:0.85rem; font-weight:600; color:var(--muted);
+  text-decoration:none; display:flex; align-items:center; gap:0.35rem;
+}
+.nav-back:hover { color:var(--terra); }
+
+.hero {
+  background:linear-gradient(135deg, #fdf0ed, #f5ede0);
+  padding:3rem 1.5rem 2rem; text-align:center;
+}
+.hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.8rem); font-weight:900;
+  margin-bottom:0.5rem;
+}
+.hero p { color:var(--muted); font-size:0.95rem; max-width:500px; margin:0 auto; }
+
+.main { max-width:900px; margin:0 auto; padding:2rem 1.5rem 4rem; }
+
+.filters {
+  display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.5rem;
+}
+.filter-btn {
+  padding:0.4rem 0.9rem; border-radius:20px;
+  border:1.5px solid var(--border);
+  background:var(--white); color:var(--muted);
+  font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:600;
+  cursor:pointer; transition:all 0.15s;
+}
+.filter-btn.active { background:var(--terra); border-color:var(--terra); color:white; }
+.filter-btn:hover:not(.active) { border-color:var(--terra); color:var(--terra); }
+
+.articles-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
+  gap:1.2rem;
+}
+
+.article-card {
+  background:var(--white); border-radius:16px;
+  border:1.5px solid var(--border);
+  padding:1.4rem; text-decoration:none; color:var(--ink);
+  transition:all 0.2s; box-shadow:var(--shadow);
+  display:flex; flex-direction:column; gap:0.5rem;
+}
+.article-card:hover { transform:translateY(-3px); box-shadow:0 8px 32px rgba(42,31,20,0.12); border-color:var(--rose); }
+.article-tag {
+  font-size:0.65rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:0.5px; color:var(--terra);
+}
+.article-title {
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem; font-weight:700; line-height:1.4;
+}
+.article-excerpt { font-size:0.8rem; color:var(--muted); line-height:1.6; flex:1; }
+.article-meta {
+  font-size:0.68rem; color:var(--muted);
+  display:flex; align-items:center; gap:0.5rem;
+  padding-top:0.5rem; border-top:1px solid var(--border);
+}
+.article-read { font-size:0.75rem; font-weight:700; color:var(--terra); margin-top:auto; }
+
+.loading {
+  text-align:center; padding:3rem; color:var(--muted);
+  display:flex; flex-direction:column; align-items:center; gap:1rem;
+}
+.spinner {
+  width:32px; height:32px; border:3px solid var(--border);
+  border-top-color:var(--terra); border-radius:50%;
+  animation:spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+.empty {
+  text-align:center; padding:3rem; color:var(--muted);
+  background:var(--white); border-radius:16px; border:1.5px solid var(--border);
+}
+
+.count-bar {
+  font-size:0.8rem; color:var(--muted); margin-bottom:1rem;
+  display:flex; align-items:center; justify-content:space-between;
+}
+
+footer {
+  background:var(--ink); color:rgba(255,255,255,0.6);
+  padding:2rem 1.5rem; text-align:center; font-size:0.75rem;
+  margin-top:3rem;
+}
+footer a { color:#f2c4b8; }
+
+.fade-in { animation:fadeIn 0.3s ease both; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+@media(max-width:600px) {
+  .articles-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">🍼 Babynorge</a>
+    <a href="/" class="nav-back">← Tilbake til forsiden</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>📖 Alle artikler</h1>
+  <p>Faglig innhold for norske foreldre — oppdatert ukentlig av vår AI-redaksjon.</p>
+</div>
+
+<div class="main">
+  <div class="filters" id="filters">
+    <button class="filter-btn active" onclick="setFilter('alle',this)">Alle</button>
+    <button class="filter-btn" onclick="setFilter('søvn',this)">😴 Søvn</button>
+    <button class="filter-btn" onclick="setFilter('mat',this)">🥕 Mat</button>
+    <button class="filter-btn" onclick="setFilter('utvikling',this)">👶 Utvikling</button>
+    <button class="filter-btn" onclick="setFilter('graviditet',this)">🤰 Graviditet</button>
+    <button class="filter-btn" onclick="setFilter('helse',this)">💊 Helse</button>
+  </div>
+
+  <div class="count-bar">
+    <span id="count-label">Laster artikler…</span>
+  </div>
+
+  <div id="articles-container">
+    <div class="loading">
+      <div class="spinner"></div>
+      <span>Henter artikler…</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Babynorge.no — <a href="personvern.html">Personvern</a> · <a href="kontakt.html">Kontakt</a><br>
+  Innholdet er veiledende og erstatter ikke råd fra lege eller helsepersonell.</p>
+</footer>
+
+<script>
+let allArticles = [];
+let currentFilter = 'alle';
+
+// Category detection from slug/title
+function detectCategory(slug, title) {
+  const text = (slug + ' ' + title).toLowerCase();
+  if (text.match(/søvn|sov|natt|lur|trøtt|sovn/)) return 'søvn';
+  if (text.match(/mat|spis|amm|melk|grøt|introduksjon|baby.*mat/)) return 'mat';
+  if (text.match(/utvikling|milepæl|lær|snakk|gå|sitte|motorisk/)) return 'utvikling';
+  if (text.match(/gravid|termin|fødsel|svanger|trimester/)) return 'graviditet';
+  if (text.match(/kolikk|syk|feber|vaksine|helse|allergi|lege/)) return 'helse';
+  return 'annet';
+}
+
+function slugToTitle(slug) {
+  // Convert slug to readable title
+  return slug
+    .replace('.html','')
+    .split('-')
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ')
+    .replace(/ Og /g,' og ')
+    .replace(/ I /g,' i ')
+    .replace(/ Av /g,' av ')
+    .replace(/ For /g,' for ')
+    .replace(/ Til /g,' til ')
+    .replace(/ Pa /g,' på ')
+    .replace(/ Na /g,' nå ')
+    .replace(/ Nar /g,' når ')
+    .replace(/ Hva /g,' hva ')
+    .replace(/ Hvordan /g,' hvordan ');
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  if (isNaN(d)) return dateStr;
+  return d.toLocaleDateString('no-NO', {day:'numeric', month:'long', year:'numeric'});
+}
+
+async function loadArticles() {
+  try {
+    // Load index.json from artikler folder
+    const res = await fetch('artikler/index.json');
+    const data = await res.json();
+
+    // Handle both array and object formats
+    let articles = [];
+    if (Array.isArray(data)) {
+      articles = data;
+    } else if (data.artikler) {
+      articles = data.artikler;
+    } else {
+      // Build from keys
+      articles = Object.entries(data).map(([slug, info]) => ({
+        slug,
+        tittel: info.tittel || info.title || slugToTitle(slug),
+        ingress: info.ingress || info.excerpt || info.beskrivelse || '',
+        dato: info.dato || info.date || '',
+        kategori: info.kategori || info.category || detectCategory(slug, info.tittel||slug),
+      }));
+    }
+
+    // Normalize
+    allArticles = articles.map(a => ({
+      slug: a.slug || a.fil || a.filename,
+      tittel: a.tittel || a.title || slugToTitle(a.slug||''),
+      ingress: a.ingress || a.excerpt || a.beskrivelse || 'Les mer om dette temaet på Babynorge.',
+      dato: a.dato || a.date || '',
+      kategori: a.kategori || a.category || detectCategory(a.slug||'', a.tittel||''),
+    })).filter(a => a.slug);
+
+    renderArticles();
+  } catch(e) {
+    console.error('Failed to load index.json:', e);
+    // Fallback: hardcode known articles
+    allArticles = [
+      { slug:'kolikk-hos-nyfodt-arsaker-og-losninger.html', tittel:'Kolikk hos nyfødt – årsaker og løsninger', ingress:'Kolikk er en av de vanligste utfordringene for nyfødte og foreldrene deres. Her er hva forskning sier om årsaker og hva som faktisk hjelper.', dato:'2026-04-13', kategori:'helse' },
+      { slug:'sovnregresjon-ved-4-maneder-hva-skjer-og-hva-gjor-du.html', tittel:'Søvnregresjon ved 4 måneder – hva skjer og hva gjør du?', ingress:'Plutselig sover ikke babyen lenger? 4-månedersregresjon er reell og kan vare i uker. Her er alt du trenger å vite.', dato:'2026-04-06', kategori:'søvn' },
+      { slug:'termindato-beregning-slik-regner-du-ut.html', tittel:'Termindato – slik regner du ut når babyen kommer', ingress:'Lurer du på når babyen kommer? Vi forklarer how termindato beregnes og hva som kan påvirke den.', dato:'2026-04-05', kategori:'graviditet' },
+    ];
+    renderArticles();
+  }
+}
+
+function renderArticles() {
+  const container = document.getElementById('articles-container');
+  const filtered = currentFilter === 'alle'
+    ? allArticles
+    : allArticles.filter(a => a.kategori === currentFilter);
+
+  document.getElementById('count-label').textContent =
+    `Viser ${filtered.length} av ${allArticles.length} artikler`;
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="empty"><div style="font-size:2rem;margin-bottom:0.75rem;">📭</div><p>Ingen artikler i denne kategorien ennå. Sjekk tilbake snart!</p></div>';
+    return;
+  }
+
+  const catEmoji = {søvn:'😴',mat:'🥕',utvikling:'👶',graviditet:'🤰',helse:'💊',annet:'📝'};
+
+  container.innerHTML = '<div class="articles-grid">' +
+    filtered.map((a, i) => `
+      <a href="artikler/${a.slug}" class="article-card fade-in" style="animation-delay:${i*0.05}s">
+        <div class="article-tag">${catEmoji[a.kategori]||'📝'} ${a.kategori.charAt(0).toUpperCase()+a.kategori.slice(1)}</div>
+        <div class="article-title">${a.tittel}</div>
+        <div class="article-excerpt">${a.ingress}</div>
+        <div class="article-meta">
+          📅 ${formatDate(a.dato)}
+          <span style="margin-left:auto">⏱ ca. 5 min</span>
+        </div>
+        <div class="article-read">Les artikkelen →</div>
+      </a>
+    `).join('') +
+  '</div>';
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderArticles();
+}
+
+loadArticles();
+</script>
+</body>
+</html>
