@@ -281,7 +281,7 @@ function renderArticles() {
 
   container.innerHTML = '<div class="articles-grid">' +
     filtered.map((a, i) => `
-      <a href="artikler/${a.slug}" class="article-card fade-in" style="animation-delay:${i*0.05}s">
+      <a href="artikler/${a.slug}.html" class="article-card fade-in" style="animation-delay:${i*0.05}s">
         <div class="article-tag">${catEmoji[a.kategori]||'📝'} ${a.kategori.charAt(0).toUpperCase()+a.kategori.slice(1)}</div>
         <div class="article-title">${a.tittel}</div>
         <div class="article-excerpt">${a.ingress}</div>
