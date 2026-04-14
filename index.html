@@ -1,197 +1,1062 @@
 <!DOCTYPE html>
-<html lang="nb">
+<html lang="no">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-91HT20F9NY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-91HT20F9NY');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Babyguiden.no – Alt om graviditet, nyfødt og baby 0–2 år</title>
-<meta name="description" content="Norges beste guide for gravide og foreldre med baby 0–2 år. Søvn, mat, milepæler, utvikling og ærlige råd fra andre foreldre.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<title>Babynorge – Alt for deg og babyen din</title>
+<meta name="description" content="Norges mest komplette babyportal. Kalkulatorer, matplanlegger, forsikringssammenligning, vaksinasjonsoversikt og faglig innhold for norske foreldre.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-.hero { background: linear-gradient(135deg, #fff8f0 0%, #fde8d0 50%, #fddbd8 100%); padding: 80px 24px 60px; text-align: center; }
-.hero-badge { display: inline-block; background: rgba(122,158,126,0.15); border: 1px solid rgba(122,158,126,0.3); padding: 6px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; color: var(--sage-dark); margin-bottom: 20px; }
-.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1.15; color: var(--text-dark); margin-bottom: 16px; }
-.hero-title em { font-style: italic; color: var(--sage); }
-.hero-sub { color: var(--text-mid); max-width: 520px; margin: 0 auto 28px; font-size: 1.05rem; line-height: 1.7; }
-.hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.btn-secondary { display: inline-block; padding: 13px 28px; border-radius: 50px; border: 2px solid var(--sage); color: var(--sage-dark); font-weight: 600; font-size: 0.95rem; transition: all .2s; }
-.btn-secondary:hover { background: var(--sage); color: white; }
+:root {
+  --blush: #fdf0ed;
+  --rose: #f2c4b8;
+  --terra: #c4714a;
+  --terra-dark: #a85a38;
+  --sage: #7a9e7e;
+  --sage-light: #b8d4ba;
+  --forest: #3d6b42;
+  --lavender: #e8e0f0;
+  --purple: #8b6bb1;
+  --sky: #daeef8;
+  --navy: #2a4a6b;
+  --cream: #fdf8f3;
+  --warm: #f5ede0;
+  --ink: #2a1f14;
+  --muted: #8a7060;
+  --border: #e8ddd4;
+  --white: #ffffff;
+  --gold: #d4a017;
+  --shadow-soft: 0 4px 24px rgba(42,31,20,0.08);
+  --shadow-med: 0 8px 40px rgba(42,31,20,0.12);
+}
 
-.quick-links { padding: 60px 0; background: var(--warm-white); }
-.quick-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
-.quick-card { background: white; border-radius: 20px; padding: 24px 16px; text-align: center; border: 1px solid var(--border); transition: all .2s; text-decoration: none; color: inherit; box-shadow: 0 2px 8px var(--shadow); }
-.quick-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px var(--shadow-md); border-color: var(--sage-light); }
-.quick-icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
-.quick-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: var(--text-dark); }
-.quick-card p { font-size: 0.75rem; color: var(--text-light); line-height: 1.5; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-.featured-section { padding: 60px 0; background: var(--cream); }
-.section-header { margin-bottom: 28px; }
-.section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--sage); display: block; margin-bottom: 6px; }
-.section-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4vw, 2.2rem); color: var(--text-dark); }
-.featured-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.featured-big { grid-column: 1 / -1; }
-.featured-card { background: white; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); text-decoration: none; color: inherit; transition: all .2s; box-shadow: 0 2px 8px var(--shadow); }
-.featured-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow-md); }
-.featured-card-bg { height: 120px; display: flex; align-items: center; justify-content: center; }
-.featured-big .featured-card-bg { height: 160px; }
-.featured-card-body { padding: 16px; }
-.featured-tag { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: var(--sage); }
-.featured-card-body h3 { font-family: 'Playfair Display', serif; font-size: 1rem; margin: 6px 0 4px; color: var(--text-dark); }
-.featured-card-body p { font-size: 0.78rem; color: var(--text-light); }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
 
-.articles-section { padding: 60px 0; background: var(--warm-white); }
-.articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-.article-card { background: white; border-radius: 16px; padding: 22px; border: 1px solid var(--border); text-decoration: none; color: inherit; transition: all .2s; box-shadow: 0 2px 8px var(--shadow); }
-.article-card:hover { transform: translateY(-3px); border-color: var(--sage-light); }
-.article-cat { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: var(--sage); margin-bottom: 8px; }
-.article-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 6px; color: var(--text-dark); }
-.article-card p { font-size: 0.8rem; color: var(--text-light); line-height: 1.5; }
+/* ── NAV ── */
+nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 900;
+  color: var(--terra);
+  display: flex; align-items: center; gap: 0.4rem;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex; gap: 0.25rem;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link {
+  padding: 0.4rem 0.85rem; border-radius: 20px;
+  font-size: 0.8rem; font-weight: 600; white-space: nowrap;
+  color: var(--muted); text-decoration: none;
+  transition: all 0.15s;
+}
+.nav-link:hover { background: var(--warm); color: var(--terra); }
 
-.trust-section { padding: 60px 0; background: var(--cream); }
-.trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
-.trust-item { text-align: center; padding: 24px; }
-.trust-icon { font-size: 2.5rem; display: block; margin-bottom: 12px; }
-.trust-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: var(--text-dark); }
-.trust-item p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #fdf0ed 0%, #f5ede0 40%, #e8f4e8 100%);
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(196,113,74,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 30%, rgba(122,158,126,0.1) 0%, transparent 50%);
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--white); border: 1px solid var(--rose);
+  border-radius: 20px; padding: 0.35rem 1rem;
+  font-size: 0.75rem; font-weight: 700; color: var(--terra);
+  margin-bottom: 1.2rem; position: relative;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 900; line-height: 1.15;
+  color: var(--ink); margin-bottom: 1rem;
+  position: relative;
+}
+.hero h1 em { color: var(--terra); font-style: italic; }
+.hero p {
+  font-size: 1.05rem; color: var(--muted);
+  max-width: 560px; margin: 0 auto 2rem;
+  line-height: 1.7; position: relative;
+}
+.hero-ctas { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.btn-primary {
+  background: var(--terra); color: white;
+  padding: 0.85rem 1.8rem; border-radius: 50px;
+  font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem;
+  box-shadow: 0 4px 16px rgba(196,113,74,0.3);
+}
+.btn-primary:hover { background: var(--terra-dark); transform: translateY(-2px); }
+.btn-secondary {
+  background: var(--white); color: var(--terra);
+  padding: 0.85rem 1.8rem; border-radius: 50px;
+  font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700;
+  text-decoration: none; border: 2px solid var(--rose); cursor: pointer;
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem;
+}
+.btn-secondary:hover { border-color: var(--terra); transform: translateY(-2px); }
 
-.newsletter-section { padding: 60px 0; background: var(--warm-white); }
-.newsletter-box { background: linear-gradient(135deg, var(--sage-light), var(--blush-light)); border-radius: 28px; padding: 48px 32px; text-align: center; }
-.newsletter-box h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 4vw, 2rem); margin-bottom: 8px; color: var(--text-dark); }
-.newsletter-box p { color: var(--text-mid); margin-bottom: 24px; }
-.newsletter-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
-.newsletter-input { flex: 1; min-width: 200px; padding: 13px 18px; border: 2px solid rgba(255,255,255,0.7); border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; background: rgba(255,255,255,0.8); outline: none; }
-.newsletter-input:focus { border-color: var(--sage); background: white; }
+/* ── SECTIONS ── */
+.section { padding: 3rem 1.5rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700; margin-bottom: 0.4rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.section-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.8rem; line-height: 1.6; }
+
+/* ── TOOLS GRID ── */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.tool-card {
+  background: var(--white);
+  border-radius: 16px;
+  border: 1.5px solid var(--border);
+  padding: 1.3rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--ink);
+  transition: all 0.2s;
+  box-shadow: var(--shadow-soft);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+}
+.tool-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-med); border-color: var(--rose); }
+.tool-icon { font-size: 2.2rem; }
+.tool-name { font-weight: 700; font-size: 0.9rem; }
+.tool-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+.tool-badge {
+  font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+  padding: 0.15rem 0.5rem; border-radius: 8px;
+}
+.badge-new { background: #d4f0d4; color: #2a6a2a; }
+.badge-pop { background: #f0d4d4; color: #6a2a2a; }
+
+/* ── CALCULATORS ── */
+.calc-section { background: var(--warm); }
+.calc-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.calc-tab {
+  padding: 0.5rem 1rem; border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--white); color: var(--muted);
+  font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s;
+}
+.calc-tab.active { background: var(--terra); border-color: var(--terra); color: white; }
+.calc-panel { display: none; }
+.calc-panel.active { display: block; }
+.calc-card {
+  background: var(--white); border-radius: 16px;
+  border: 1.5px solid var(--border);
+  padding: 1.5rem; box-shadow: var(--shadow-soft);
+  max-width: 560px;
+}
+.calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.field { display: flex; flex-direction: column; gap: 0.35rem; }
+.field label { font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; }
+.field input, .field select {
+  background: var(--warm); border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 0.6rem 0.85rem;
+  font-family: 'Nunito', sans-serif; font-size: 0.95rem;
+  color: var(--ink); transition: border-color 0.15s;
+}
+.field input:focus, .field select:focus { outline: none; border-color: var(--terra); }
+.btn-calc {
+  background: var(--terra); color: white; border: none;
+  padding: 0.75rem 1.5rem; border-radius: 10px;
+  font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; transition: all 0.15s; width: 100%; margin-top: 0.5rem;
+}
+.btn-calc:hover { background: var(--terra-dark); }
+.calc-result {
+  background: linear-gradient(135deg, var(--blush), var(--warm));
+  border: 1.5px solid var(--rose);
+  border-radius: 12px; padding: 1.2rem;
+  margin-top: 1rem; display: none;
+}
+.calc-result.show { display: block; }
+.result-main { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: var(--terra); }
+.result-sub { font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.5; }
+
+/* ── INSURANCE ── */
+.insurance-section { background: var(--lavender); }
+.insurance-grid { display: flex; flex-direction: column; gap: 0.85rem; }
+.insurance-card {
+  background: var(--white); border-radius: 14px;
+  border: 1.5px solid var(--border);
+  padding: 1.2rem 1.4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; box-shadow: var(--shadow-soft);
+  transition: all 0.2s;
+}
+.insurance-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-med); }
+.insurance-card.top { border-color: var(--gold); }
+.ins-rank {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.85rem; flex-shrink: 0;
+}
+.rank-1 { background: #ffd700; color: #5a4a00; }
+.rank-2 { background: #e0e0e0; color: #3a3a3a; }
+.rank-3 { background: #cd7f32; color: #fff; }
+.rank-other { background: var(--warm); color: var(--muted); }
+.ins-info { flex: 1; }
+.ins-name { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.2rem; }
+.ins-features { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.3rem; }
+.ins-feature {
+  font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 8px;
+  background: var(--sage-light); color: var(--forest); font-weight: 700;
+}
+.ins-price { text-align: right; flex-shrink: 0; }
+.ins-price-val { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--forest); }
+.ins-price-note { font-size: 0.68rem; color: var(--muted); }
+.btn-ins {
+  background: var(--forest); color: white; border: none;
+  padding: 0.55rem 1.1rem; border-radius: 8px;
+  font-family: 'Nunito', sans-serif; font-size: 0.78rem; font-weight: 700;
+  cursor: pointer; white-space: nowrap; text-decoration: none;
+  display: inline-block; transition: background 0.15s; flex-shrink: 0;
+}
+.btn-ins:hover { background: #2a5030; }
+.ins-disclaimer { font-size: 0.7rem; color: var(--muted); margin-top: 0.75rem; font-style: italic; }
+
+/* ── VACCINE ── */
+.vaccine-timeline { display: flex; flex-direction: column; gap: 0; }
+.vaccine-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.vaccine-item:last-child { border-bottom: none; }
+.vaccine-age {
+  background: var(--terra); color: white;
+  border-radius: 8px; padding: 0.3rem 0.65rem;
+  font-size: 0.75rem; font-weight: 800;
+  white-space: nowrap; flex-shrink: 0; margin-top: 0.1rem;
+}
+.vaccine-info { flex: 1; }
+.vaccine-name { font-weight: 700; font-size: 0.88rem; margin-bottom: 0.2rem; }
+.vaccine-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+.vaccine-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.3rem; }
+.vaccine-tag {
+  font-size: 0.62rem; padding: 0.15rem 0.45rem; border-radius: 6px;
+  background: var(--sky); color: var(--navy); font-weight: 700;
+}
+
+/* ── NAME GENERATOR ── */
+.name-gen-box {
+  background: var(--white); border-radius: 16px;
+  border: 1.5px solid var(--border); padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+}
+.name-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.name-filter {
+  padding: 0.4rem 0.85rem; border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--white); color: var(--muted);
+  font-family: 'Nunito', sans-serif; font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s;
+}
+.name-filter.active { background: var(--purple); border-color: var(--purple); color: white; }
+.names-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.6rem; }
+.name-card {
+  background: var(--lavender); border-radius: 10px;
+  padding: 0.75rem; text-align: center;
+  cursor: pointer; transition: all 0.15s;
+  border: 1.5px solid transparent;
+}
+.name-card:hover { border-color: var(--purple); transform: translateY(-1px); }
+.name-val { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); }
+.name-meaning { font-size: 0.68rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.3; }
+.name-origin { font-size: 0.62rem; color: var(--purple); font-weight: 700; margin-top: 0.15rem; }
+
+/* ── AFFILIATE ── */
+.affiliate-strip {
+  background: linear-gradient(135deg, #fff8ec, #fff3dc);
+  border: 1.5px solid #f0d080; border-radius: 16px;
+  padding: 1.3rem 1.5rem; margin: 1.5rem 0;
+}
+.aff-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); font-weight: 700; margin-bottom: 0.5rem; }
+.aff-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
+.aff-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.85rem; }
+.aff-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.aff-btn {
+  flex: 1; min-width: 120px; background: var(--forest); color: white;
+  border: none; padding: 0.6rem 0.9rem; border-radius: 8px;
+  font-family: 'Nunito', sans-serif; font-size: 0.78rem; font-weight: 700;
+  cursor: pointer; text-decoration: none; text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 0.3rem;
+  transition: all 0.15s;
+}
+.aff-btn:hover { background: #2a5030; transform: translateY(-1px); }
+.aff-btn.terra { background: var(--terra); }
+.aff-btn.terra:hover { background: var(--terra-dark); }
+.aff-btn.purple { background: var(--purple); }
+.aff-btn.purple:hover { background: #7a5aa0; }
+
+/* ── ARTICLES ── */
+.articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+.article-card {
+  background: var(--white); border-radius: 14px;
+  border: 1.5px solid var(--border);
+  padding: 1.3rem; text-decoration: none; color: var(--ink);
+  transition: all 0.2s; box-shadow: var(--shadow-soft);
+}
+.article-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-med); }
+.article-tag {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--terra); margin-bottom: 0.5rem; display: block;
+}
+.article-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; line-height: 1.4; margin-bottom: 0.5rem; }
+.article-excerpt { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+.article-meta { font-size: 0.68rem; color: var(--muted); margin-top: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+
+/* ── GROWTH CHART ── */
+.growth-visual {
+  background: var(--white); border-radius: 16px;
+  border: 1.5px solid var(--border); padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+}
+.growth-bars { display: flex; align-items: flex-end; gap: 0.5rem; height: 120px; margin: 1rem 0; }
+.growth-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+.growth-bar {
+  width: 100%; border-radius: 6px 6px 0 0;
+  background: linear-gradient(to top, var(--terra), var(--rose));
+  transition: height 0.5s ease;
+}
+.growth-bar-label { font-size: 0.62rem; color: var(--muted); text-align: center; }
+.growth-bar-val { font-size: 0.68rem; font-weight: 700; color: var(--terra); }
+
+/* ── SLEEP ── */
+.sleep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+.sleep-card {
+  background: var(--sky); border-radius: 12px;
+  padding: 1rem; text-align: center; border: 1.5px solid #c0dff0;
+}
+.sleep-age { font-size: 0.72rem; font-weight: 700; color: var(--navy); text-transform: uppercase; }
+.sleep-hours { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--navy); }
+.sleep-note { font-size: 0.68rem; color: #4a7a9a; margin-top: 0.2rem; line-height: 1.4; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink); color: rgba(255,255,255,0.6);
+  padding: 2.5rem 1.5rem; text-align: center;
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--rose); margin-bottom: 0.75rem; }
+.footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0; }
+.footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.8rem; }
+.footer-links a:hover { color: white; }
+.footer-note { font-size: 0.72rem; line-height: 1.6; margin-top: 1rem; }
+.footer-note a { color: var(--rose); }
+
+/* ── AD BANNER ── */
+.ad-banner {
+  background: var(--warm); border-bottom: 1px solid var(--border);
+  text-align: center; padding: 0.45rem;
+}
+.ad-placeholder {
+  display: inline-block; background: #e8e4dc;
+  border: 1px dashed #bbb; border-radius: 4px;
+  padding: 0.3rem 2rem; font-size: 0.7rem; color: #999;
+}
+
+@media (max-width: 600px) {
+  .tools-grid { grid-template-columns: repeat(2, 1fr); }
+  .calc-row { grid-template-columns: 1fr; }
+  .insurance-card { flex-wrap: wrap; }
+  .articles-grid { grid-template-columns: 1fr; }
+}
+
+.fade-in { animation: fadeIn 0.4s ease both; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
-    <a href="index.html" class="logo"><span class="logo-icon">🌿</span> Babyguiden<span class="logo-dot">.no</span></a>
-    <nav class="main-nav">
-      <a href="graviditet.html">Graviditet</a>
-      <a href="baby.html">Baby</a>
-      <a href="sovn.html">Søvn</a>
-      <a href="mat.html">Mat</a>
-      <a href="utvikling.html">Utvikling</a>
-      <a href="kalkulator.html" class="nav-cta">Kalkulatorer</a>
-    </nav>
-    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-  </div>
-  <nav class="mobile-menu" id="mobileMenu">
-    <a href="graviditet.html">🤰 Graviditet</a>
-    <a href="baby.html">👶 Baby 0–2 år</a>
-    <a href="sovn.html">😴 Søvn</a>
-    <a href="mat.html">🥣 Mat & amming</a>
-    <a href="utvikling.html">🌱 Utvikling</a>
-    <a href="kalkulator.html">🧮 Kalkulatorer</a>
-  </nav>
-</header>
+<!-- AD -->
+<div class="ad-banner">
+  <span class="ad-placeholder">📢 Annonseplass – Google AdSense</span>
+</div>
 
-<section class="hero">
-  <div class="hero-badge">🌿 Norges tryggeste guide for nye foreldre</div>
-  <h1 class="hero-title">Du er ikke alene.<br><em>Ingen er.</em></h1>
-  <p class="hero-sub">Fra den første positive testen til toddler-kaos — vi er med deg hele veien. Ærlige råd, faglig kunnskap og varme for nye foreldre.</p>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">🍼 Babynorge</a>
+    <div class="nav-links">
+      <a href="#kalkulatorer" class="nav-link">🧮 Kalkulatorer</a>
+      <a href="#forsikring" class="nav-link">🛡️ Forsikring</a>
+      <a href="#vaksiner" class="nav-link">💉 Vaksiner</a>
+      <a href="#navn" class="nav-link">✨ Navn</a>
+      <a href="#sovn" class="nav-link">😴 Søvn</a>
+      <a href="matplanlegger.html" class="nav-link">🥦 Matplan</a>
+      <a href="artikler.html" class="nav-link">📖 Artikler</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🇳🇴 Norges mest komplette babyportal</div>
+  <h1>Alt du trenger<br>for <em>deg og babyen</em></h1>
+  <p>Kalkulatorer, forsikringssammenligning, matplanlegger, vaksinasjonsoversikt og mye mer — samlet på ett sted.</p>
   <div class="hero-ctas">
-    <a href="graviditet.html" class="btn-primary">Jeg er gravid →</a>
-    <a href="baby.html" class="btn-secondary">Jeg har nyfødt</a>
+    <a href="#kalkulatorer" class="btn-primary">🧮 Prøv kalkulatorene</a>
+    <a href="#forsikring" class="btn-secondary">🛡️ Sammenlign forsikring</a>
   </div>
-</section>
+</div>
 
-<section class="quick-links">
-  <div class="container">
-    <div class="quick-grid">
-      <a href="graviditet.html" class="quick-card"><span class="quick-icon">🤰</span><h3>Graviditet</h3><p>Uke for uke — hva som skjer med deg og fosteret</p></a>
-      <a href="baby.html" class="quick-card"><span class="quick-icon">👶</span><h3>Baby 0–2 år</h3><p>Alt du trenger å vite om den første tiden</p></a>
-      <a href="sovn.html" class="quick-card"><span class="quick-icon">😴</span><h3>Søvn</h3><p>Søvnrytmer, søvntrening og hvit støy-maskin</p></a>
-      <a href="mat.html" class="quick-card"><span class="quick-icon">🥣</span><h3>Mat & amming</h3><p>Trygg mat, oppskrifter og ammeguide</p></a>
-      <a href="utvikling.html" class="quick-card"><span class="quick-icon">🌱</span><h3>Utvikling</h3><p>Fosterutvikling og milepæler 0–2 år</p></a>
-      <a href="kalkulator.html" class="quick-card"><span class="quick-icon">🧮</span><h3>Kalkulatorer</h3><p>Termindato, vekt, lengde og mer</p></a>
-    </div>
-  </div>
-</section>
-
-<section class="featured-section">
-  <div class="container">
-    <div class="section-header"><span class="section-label">✨ Populært akkurat nå</span><h2>Det andre foreldre leser</h2></div>
-    <div class="featured-grid">
-      <a href="sovn.html" class="featured-card featured-big">
-        <div class="featured-card-bg" style="background:linear-gradient(135deg,#e8e2f5,#d6ebf5)"><span style="font-size:3.5rem">😴</span></div>
-        <div class="featured-card-body"><span class="featured-tag">Søvn</span><h3>Babysøvn — den komplette guiden</h3><p>Alt fra nyfødt til 2 år, hvit støy-maskin og søvntrening</p></div>
+<!-- TOOLS OVERVIEW -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">🛠️ Verktøy og kalkulatorer</h2>
+    <p class="section-sub">Alt du trenger som ny eller kommende forelder — gratis og oppdatert med norske satser 2025.</p>
+    <div class="tools-grid">
+      <a href="#kalk-termin" class="tool-card" onclick="openCalc('termin')">
+        <span class="tool-icon">🤰</span>
+        <span class="tool-name">Terminkalkulator</span>
+        <span class="tool-desc">Regn ut termindato fra siste menstruasjon</span>
+        <span class="tool-badge badge-pop">Mest brukt</span>
       </a>
-      <a href="mat.html" class="featured-card">
-        <div class="featured-card-bg" style="background:linear-gradient(135deg,#fde8d0,#fddbd8)"><span style="font-size:2.5rem">🥣</span></div>
-        <div class="featured-card-body"><span class="featured-tag">Mat</span><h3>Trygg og utrygg mat for baby</h3><p>Søkbar database med 24+ matvarer</p></div>
+      <a href="#kalk-uke" class="tool-card" onclick="openCalc('uke')">
+        <span class="tool-icon">📅</span>
+        <span class="tool-name">Svangerskapsuke</span>
+        <span class="tool-desc">Hvor mange uker gravid er du?</span>
       </a>
-      <a href="utvikling.html" class="featured-card">
-        <div class="featured-card-bg" style="background:linear-gradient(135deg,#d4edda,#d6ebf5)"><span style="font-size:2.5rem">🌱</span></div>
-        <div class="featured-card-body"><span class="featured-tag">Utvikling</span><h3>Fosterutvikling uke for uke</h3><p>Interaktiv slider med størrelse og detaljer</p></div>
+      <a href="#kalk-sovn" class="tool-card" onclick="openCalc('sovn')">
+        <span class="tool-icon">😴</span>
+        <span class="tool-name">Søvnkalkulator</span>
+        <span class="tool-desc">Hvor mye søvn trenger babyen?</span>
+        <span class="tool-badge badge-new">Ny</span>
+      </a>
+      <a href="#kalk-vekst" class="tool-card" onclick="openCalc('vekst')">
+        <span class="tool-icon">📈</span>
+        <span class="tool-name">Vekstkalkulator</span>
+        <span class="tool-desc">Sammenlign med WHO-kurver</span>
+        <span class="tool-badge badge-new">Ny</span>
+      </a>
+      <a href="matplanlegger.html" class="tool-card">
+        <span class="tool-icon">🥦</span>
+        <span class="tool-name">Matplanlegger</span>
+        <span class="tool-desc">Ukesplan med AI-oppskrifter og babymat</span>
+        <span class="tool-badge badge-new">Ny</span>
+      </a>
+      <a href="#forsikring" class="tool-card">
+        <span class="tool-icon">🛡️</span>
+        <span class="tool-name">Forsikring</span>
+        <span class="tool-desc">Sammenlign barneforsikring og finn beste pris</span>
+        <span class="tool-badge badge-pop">Spar penger</span>
+      </a>
+      <a href="#vaksiner" class="tool-card">
+        <span class="tool-icon">💉</span>
+        <span class="tool-name">Vaksinasjon</span>
+        <span class="tool-desc">Norsk barnevaksinasjonsprogram 2025</span>
+      </a>
+      <a href="#navn" class="tool-card">
+        <span class="tool-icon">✨</span>
+        <span class="tool-name">Babynavn</span>
+        <span class="tool-desc">Populære norske navn med betydning</span>
       </a>
     </div>
   </div>
 </section>
 
-<section class="articles-section">
-  <div class="container">
-    <div class="section-header"><span class="section-label">📖 Siste artikler</span><h2>Nytt fra redaksjonen</h2></div>
-    <div class="articles-grid">
-      <a href="graviditet.html" class="article-card"><div class="article-cat">Graviditet</div><h4>De 40 ukene — uke for uke guide</h4><p>Alt som skjer med deg og fosteret gjennom svangerskapet</p></a>
-      <a href="sovn.html" class="article-card"><div class="article-cat">Søvn</div><h4>4-månedersregresjonen — hva er det?</h4><p>Forstå hvorfor babyen plutselig sover mye dårligere</p></a>
-      <a href="mat.html" class="article-card"><div class="article-cat">Mat</div><h4>Første mat til baby — slik starter du</h4><p>Uke for uke plan for innføring av fast føde fra 4–6 måneder</p></a>
-    </div>
-  </div>
-</section>
-
-<section class="trust-section">
-  <div class="container">
-    <div class="trust-grid">
-      <div class="trust-item"><span class="trust-icon">👩‍⚕️</span><h4>Faglig kvalitetssikret</h4><p>Basert på oppdatert medisinsk kunnskap og norske retningslinjer</p></div>
-      <div class="trust-item"><span class="trust-icon">❤️</span><h4>Laget av foreldre</h4><p>Vi vet hvordan det er å stå opp klokken 3 med en skriende baby</p></div>
-      <div class="trust-item"><span class="trust-icon">🔒</span><h4>Trygt og uavhengig</h4><p>Ingen sponsede råd. Vi anbefaler kun det vi selv ville brukt</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="newsletter-section">
-  <div class="container">
-    <div class="newsletter-box">
-      <span style="font-size:2.5rem;display:block;margin-bottom:12px">💌</span>
-      <h2>Ukentlige tips rett i innboksen</h2>
-      <p>Tilpasset babyens alder — relevant, ærlig og aldri spam</p>
-      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-        <input type="email" placeholder="din@epost.no" required class="newsletter-input">
-        <button type="submit" class="btn-primary">Meld meg på</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo" style="margin-bottom:12px">🌿 Babyguiden<span class="logo-dot">.no</span></div>
-        <p style="font-size:0.85rem;color:var(--text-light);max-width:280px">Norges tryggeste guide for nye foreldre.</p>
+<!-- AFFILIATE: MATKASSE -->
+<section class="section" style="padding-top:0;">
+  <div class="section-inner">
+    <div class="affiliate-strip">
+      <div class="aff-label">Samarbeidspartner</div>
+      <div class="aff-title">🍽️ Spar tid med matkasse – perfekt for småbarnsforeldre</div>
+      <div class="aff-desc">Ferdig planlagte middager levert hjem. Ingen planlegging, ingen matsvinn — mer tid til babyen.</div>
+      <div class="aff-btns">
+        <a href="https://www.adamsmatkasse.no" target="_blank" class="aff-btn terra">Adams Matkasse – fra 99 kr/middag</a>
+        <a href="https://www.godtlevert.no" target="_blank" class="aff-btn">Godtlevert – 3 uker gratis</a>
+        <a href="https://oda.com" target="_blank" class="aff-btn purple">Oda – netthandel levert hjem</a>
       </div>
-      <div class="footer-links"><h4>Graviditet</h4><a href="graviditet.html">1. trimester</a><a href="graviditet.html#trimester2">2. trimester</a><a href="graviditet.html#trimester3">3. trimester</a><a href="kalkulator.html#termin">Termindato</a></div>
-      <div class="footer-links"><h4>Baby</h4><a href="sovn.html">Søvn</a><a href="mat.html">Mat & amming</a><a href="utvikling.html">Utvikling</a></div>
-      <div class="footer-links"><h4>Verktøy</h4><a href="kalkulator.html">Alle kalkulatorer</a><a href="utvikling.html#milepæler">Milepælskalender</a></div>
     </div>
-    <div class="footer-bottom"><p>© 2025 Babyguiden.no · <a href="#">Personvern</a> · <a href="#">Annonser</a> · Innholdet er veiledende og erstatter ikke medisinsk råd.</p></div>
+  </div>
+</section>
+
+<!-- KALKULATORER -->
+<section class="section calc-section" id="kalkulatorer">
+  <div class="section-inner">
+    <h2 class="section-title">🧮 Kalkulatorer</h2>
+    <p class="section-sub">Norske kalkulatorer oppdatert med 2025-satser.</p>
+
+    <div class="calc-tabs">
+      <button class="calc-tab active" onclick="openCalc('termin',this)">🤰 Termindato</button>
+      <button class="calc-tab" onclick="openCalc('uke',this)">📅 Svangerskapsuke</button>
+      <button class="calc-tab" onclick="openCalc('sovn',this)">😴 Søvnbehov</button>
+      <button class="calc-tab" onclick="openCalc('vekst',this)">📈 Vekst</button>
+      <button class="calc-tab" onclick="openCalc('fp',this)">💰 Foreldrepenger</button>
+    </div>
+
+    <!-- TERMIN -->
+    <div class="calc-panel active" id="panel-termin">
+      <div class="calc-card">
+        <h3 style="font-family:'Playfair Display',serif;margin-bottom:1rem;">Terminkalkulator</h3>
+        <div class="field" style="margin-bottom:1rem;">
+          <label>Første dag i siste menstruasjon</label>
+          <input type="date" id="siste-mens">
+        </div>
+        <button class="btn-calc" onclick="calcTermin()">Beregn termindato</button>
+        <div class="calc-result" id="res-termin">
+          <div class="result-main" id="termin-dato"></div>
+          <div class="result-sub" id="termin-info"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UKE -->
+    <div class="calc-panel" id="panel-uke">
+      <div class="calc-card">
+        <h3 style="font-family:'Playfair Display',serif;margin-bottom:1rem;">Svangerskapsuke</h3>
+        <div class="field" style="margin-bottom:1rem;">
+          <label>Første dag i siste menstruasjon</label>
+          <input type="date" id="mens-uke">
+        </div>
+        <button class="btn-calc" onclick="calcUke()">Beregn uke</button>
+        <div class="calc-result" id="res-uke">
+          <div class="result-main" id="uke-num"></div>
+          <div class="result-sub" id="uke-info"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SØVN -->
+    <div class="calc-panel" id="panel-sovn">
+      <div class="calc-card">
+        <h3 style="font-family:'Playfair Display',serif;margin-bottom:1rem;">Søvnbehovskalkulator</h3>
+        <div class="field" style="margin-bottom:1rem;">
+          <label>Barnets alder</label>
+          <select id="sovn-alder">
+            <option value="0">Nyfødt (0–3 mnd)</option>
+            <option value="1">4–6 måneder</option>
+            <option value="2">7–12 måneder</option>
+            <option value="3">1–2 år</option>
+            <option value="4">3–5 år</option>
+            <option value="5">6–12 år</option>
+          </select>
+        </div>
+        <button class="btn-calc" onclick="calcSovn()">Se søvnbehov</button>
+        <div class="calc-result" id="res-sovn">
+          <div class="result-main" id="sovn-timer"></div>
+          <div class="result-sub" id="sovn-info"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VEKST -->
+    <div class="calc-panel" id="panel-vekst">
+      <div class="calc-card">
+        <h3 style="font-family:'Playfair Display',serif;margin-bottom:1rem;">Vekstkalkulator</h3>
+        <div class="calc-row">
+          <div class="field">
+            <label>Alder (måneder)</label>
+            <input type="number" id="vekst-alder" placeholder="f.eks. 6" min="0" max="24">
+          </div>
+          <div class="field">
+            <label>Kjønn</label>
+            <select id="vekst-kjonn">
+              <option value="j">Jente</option>
+              <option value="g">Gutt</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-row">
+          <div class="field">
+            <label>Vekt (kg)</label>
+            <input type="number" id="vekst-vekt" placeholder="f.eks. 7.2" step="0.1">
+          </div>
+          <div class="field">
+            <label>Lengde (cm)</label>
+            <input type="number" id="vekst-lengde" placeholder="f.eks. 67">
+          </div>
+        </div>
+        <button class="btn-calc" onclick="calcVekst()">Sammenlign med WHO</button>
+        <div class="calc-result" id="res-vekst">
+          <div class="result-main" id="vekst-res"></div>
+          <div class="result-sub" id="vekst-info"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORELDREPENGER -->
+    <div class="calc-panel" id="panel-fp">
+      <div class="calc-card">
+        <h3 style="font-family:'Playfair Display',serif;margin-bottom:1rem;">Foreldrepengekalkulator 2025</h3>
+        <div class="calc-row">
+          <div class="field">
+            <label>Årslønn (kr)</label>
+            <input type="number" id="fp-lonn" placeholder="f.eks. 650000">
+          </div>
+          <div class="field">
+            <label>Dekningsgrad</label>
+            <select id="fp-grad">
+              <option value="1.0">100%</option>
+              <option value="0.8">80%</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-calc" onclick="calcFP()">Beregn foreldrepenger</button>
+        <div class="calc-result" id="res-fp">
+          <div class="result-main" id="fp-res"></div>
+          <div class="result-sub" id="fp-info"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORSIKRING -->
+<section class="section insurance-section" id="forsikring">
+  <div class="section-inner">
+    <h2 class="section-title">🛡️ Barneforsikring – sammenligning 2025</h2>
+    <p class="section-sub">Vi har sammenlignet de største norske forsikringsselskapene. Priser er veiledende og oppdatert 2025.</p>
+
+    <div class="insurance-grid">
+      <div class="insurance-card top">
+        <div class="ins-rank rank-1">🥇</div>
+        <div class="ins-info">
+          <div class="ins-name">If Barneforsikring</div>
+          <div class="ins-features">
+            <span class="ins-feature">Ulykke</span>
+            <span class="ins-feature">Sykdom</span>
+            <span class="ins-feature">Behandling</span>
+            <span class="ins-feature">Psykisk helse</span>
+          </div>
+        </div>
+        <div class="ins-price">
+          <div class="ins-price-val">fra 179 kr/mnd</div>
+          <div class="ins-price-note">0–26 år</div>
+        </div>
+        <a href="https://www.if.no/privat/forsikring/barneforsikring" target="_blank" class="btn-ins">Kjøp nå →</a>
+      </div>
+
+      <div class="insurance-card top">
+        <div class="ins-rank rank-2">🥈</div>
+        <div class="ins-info">
+          <div class="ins-name">Gjensidige Barneforsikring</div>
+          <div class="ins-features">
+            <span class="ins-feature">Ulykke</span>
+            <span class="ins-feature">Sykdom</span>
+            <span class="ins-feature">Behandling</span>
+          </div>
+        </div>
+        <div class="ins-price">
+          <div class="ins-price-val">fra 165 kr/mnd</div>
+          <div class="ins-price-note">0–25 år</div>
+        </div>
+        <a href="https://www.gjensidige.no/privat/forsikring/barneforsikring" target="_blank" class="btn-ins">Kjøp nå →</a>
+      </div>
+
+      <div class="insurance-card">
+        <div class="ins-rank rank-3">🥉</div>
+        <div class="ins-info">
+          <div class="ins-name">Storebrand Barneforsikring</div>
+          <div class="ins-features">
+            <span class="ins-feature">Ulykke</span>
+            <span class="ins-feature">Sykdom</span>
+          </div>
+        </div>
+        <div class="ins-price">
+          <div class="ins-price-val">fra 149 kr/mnd</div>
+          <div class="ins-price-note">0–25 år</div>
+        </div>
+        <a href="https://www.storebrand.no" target="_blank" class="btn-ins">Kjøp nå →</a>
+      </div>
+
+      <div class="insurance-card">
+        <div class="ins-rank rank-other">4</div>
+        <div class="ins-info">
+          <div class="ins-name">Frende Barneforsikring</div>
+          <div class="ins-features">
+            <span class="ins-feature">Ulykke</span>
+            <span class="ins-feature">Sykdom</span>
+          </div>
+        </div>
+        <div class="ins-price">
+          <div class="ins-price-val">fra 145 kr/mnd</div>
+          <div class="ins-price-note">0–26 år</div>
+        </div>
+        <a href="https://www.frende.no" target="_blank" class="btn-ins">Kjøp nå →</a>
+      </div>
+    </div>
+    <p class="ins-disclaimer">* Priser er veiledende. Noen lenker er affiliatelenker — vi mottar provisjon uten ekstra kostnad for deg.</p>
+  </div>
+</section>
+
+<!-- SØVN GUIDE -->
+<section class="section" id="sovn">
+  <div class="section-inner">
+    <h2 class="section-title">😴 Søvnbehov etter alder</h2>
+    <p class="section-sub">Anbefalt søvn ifølge norske helsemyndigheter og WHO.</p>
+    <div class="sleep-grid">
+      <div class="sleep-card"><div class="sleep-age">Nyfødt 0–3 mnd</div><div class="sleep-hours">14–17t</div><div class="sleep-note">Inkl. lur. Mange korte søvnperioder</div></div>
+      <div class="sleep-card"><div class="sleep-age">4–6 måneder</div><div class="sleep-hours">12–15t</div><div class="sleep-note">2–3 lurer per dag</div></div>
+      <div class="sleep-card"><div class="sleep-age">7–12 måneder</div><div class="sleep-hours">12–14t</div><div class="sleep-note">2 lurer, lengre nattesøvn</div></div>
+      <div class="sleep-card"><div class="sleep-age">1–2 år</div><div class="sleep-hours">11–14t</div><div class="sleep-note">1 middagslur</div></div>
+      <div class="sleep-card"><div class="sleep-age">3–5 år</div><div class="sleep-hours">10–13t</div><div class="sleep-note">Lur ikke nødvendig</div></div>
+      <div class="sleep-card"><div class="sleep-age">6–12 år</div><div class="sleep-hours">9–11t</div><div class="sleep-note">Jevn leggetid viktig</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VAKSINER -->
+<section class="section" id="vaksiner" style="background:var(--sky);">
+  <div class="section-inner">
+    <h2 class="section-title">💉 Barnevaksinasjonsprogrammet 2025</h2>
+    <p class="section-sub">Norsk nasjonalt vaksinasjonsprogram — alle vaksiner er gratis.</p>
+    <div class="vaccine-timeline">
+      <div class="vaccine-item">
+        <span class="vaccine-age">6 uker</span>
+        <div class="vaccine-info">
+          <div class="vaccine-name">Rotavirus (Rotarix)</div>
+          <div class="vaccine-desc">Beskytter mot rotavirusinfeksjon. Gis som dråper i munnen.</div>
+          <div class="vaccine-tags"><span class="vaccine-tag">Gratis</span><span class="vaccine-tag">Helsestasjon</span></div>
+        </div>
+      </div>
+      <div class="vaccine-item">
+        <span class="vaccine-age">3 mnd</span>
+        <div class="vaccine-info">
+          <div class="vaccine-name">DTP-IPV-Hib-HepB (6-i-1)</div>
+          <div class="vaccine-desc">Difteri, stivkrampe, kikhoste, polio, Hib og hepatitt B. Første dose.</div>
+          <div class="vaccine-tags"><span class="vaccine-tag">Gratis</span><span class="vaccine-tag">Helsestasjon</span></div>
+        </div>
+      </div>
+      <div class="vaccine-item">
+        <span class="vaccine-age">5 mnd</span>
+        <div class="vaccine-info">
+          <div class="vaccine-name">DTP-IPV-Hib-HepB + Pneumokokk</div>
+          <div class="vaccine-desc">Andre dose av 6-i-1 + beskyttelse mot lungebetennelse og hjernehinnebetennelse.</div>
+          <div class="vaccine-tags"><span class="vaccine-tag">Gratis</span></div>
+        </div>
+      </div>
+      <div class="vaccine-item">
+        <span class="vaccine-age">12 mnd</span>
+        <div class="vaccine-info">
+          <div class="vaccine-name">MMR (meslinger, kusma, røde hunder)</div>
+          <div class="vaccine-desc">Første dose MMR. Viktig for flokkimmunitet.</div>
+          <div class="vaccine-tags"><span class="vaccine-tag">Gratis</span><span class="vaccine-tag">Helsestasjon</span></div>
+        </div>
+      </div>
+      <div class="vaccine-item">
+        <span class="vaccine-age">15 mnd</span>
+        <div class="vaccine-info">
+          <div class="vaccine-name">DTP-IPV-Hib + Pneumokokk (booster)</div>
+          <div class="vaccine-desc">Oppfriskningsdose av 6-i-1 og pneumokokkvaksine.</div>
+          <div class="vaccine-tags"><span class="vaccine-tag">Gratis</span></div>
+        </div>
+      </div>
+      <div class="vaccine-item">
+        <span class="vaccine-age">2. klasse</span>
+        <div class="vaccine-info">
+          <div class="vaccine-name">MMR dose 2</div>
+          <div class="vaccine-desc">Andre dose meslinger, kusma, røde hunder. Gis på skolen.</div>
+          <div class="vaccine-tags"><span class="vaccine-tag">Gratis</span><span class="vaccine-tag">Skolehelsetjenesten</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BABYNAVN -->
+<section class="section" id="navn">
+  <div class="section-inner">
+    <h2 class="section-title">✨ Populære babynavn i Norge</h2>
+    <p class="section-sub">Topp norske babynavn med betydning og opprinnelse. Klikk for å lagre favoritter.</p>
+    <div class="name-gen-box">
+      <div class="name-filters">
+        <button class="name-filter active" onclick="filterNames('alle',this)">Alle</button>
+        <button class="name-filter" onclick="filterNames('jente',this)">👧 Jente</button>
+        <button class="name-filter" onclick="filterNames('gutt',this)">👦 Gutt</button>
+        <button class="name-filter" onclick="filterNames('norrønt',this)">⚔️ Norrønt</button>
+        <button class="name-filter" onclick="filterNames('klassisk',this)">📜 Klassisk</button>
+      </div>
+      <div class="names-grid" id="names-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- AFFILIATE: BABYUTSTYR -->
+<section class="section" style="padding-top:0;">
+  <div class="section-inner">
+    <div class="affiliate-strip">
+      <div class="aff-label">Samarbeidspartner – Babyutstyr</div>
+      <div class="aff-title">🛍️ Alt du trenger til babyen — til gode priser</div>
+      <div class="aff-desc">Fra vogner og bilseter til klær og leker. Finn de beste tilbudene hos Norges ledende babybutikker.</div>
+      <div class="aff-btns">
+        <a href="https://www.babysam.no" target="_blank" class="aff-btn terra">Babysam – stort utvalg</a>
+        <a href="https://www.babyshop.no" target="_blank" class="aff-btn">Babyshop – designer</a>
+        <a href="https://www.jollyroom.no" target="_blank" class="aff-btn purple">Jollyroom – tilbud</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="section" style="background:var(--warm);">
+  <div class="section-inner">
+    <h2 class="section-title">📖 Siste artikler</h2>
+    <p class="section-sub">Faglig innhold for norske foreldre — oppdatert ukentlig.</p>
+    <div class="articles-grid">
+      <a href="artikler/baby-sover-ikke.html" class="article-card">
+        <span class="article-tag">😴 Søvn</span>
+        <div class="article-title">Babyen sover ikke — hva gjør du?</div>
+        <div class="article-excerpt">De vanligste søvnproblemene og hva forskning sier fungerer best for norske familier.</div>
+        <div class="article-meta">⏱ 5 min · Oppdatert 2025</div>
+      </a>
+      <a href="artikler/introduksjonsmat.html" class="article-card">
+        <span class="article-tag">🥕 Mat</span>
+        <div class="article-title">Introduksjonsmat — når og hvordan starte?</div>
+        <div class="article-excerpt">Alt du trenger å vite om å starte med fast føde. Norske helsemyndigheters anbefalinger.</div>
+        <div class="article-meta">⏱ 7 min · Oppdatert 2025</div>
+      </a>
+      <a href="artikler/amming.html" class="article-card">
+        <span class="article-tag">🤱 Amming</span>
+        <div class="article-title">Amming — de vanligste spørsmålene</div>
+        <div class="article-excerpt">Fra begynnervansker til ammestopp. Praktiske råd fra jordmødre og helsesykepleiere.</div>
+        <div class="article-meta">⏱ 6 min · Oppdatert 2025</div>
+      </a>
+      <a href="artikler/barneforsikring.html" class="article-card">
+        <span class="article-tag">🛡️ Forsikring</span>
+        <div class="article-title">Barneforsikring — trenger du det?</div>
+        <div class="article-excerpt">Vi gjennomgår hva barneforsikring dekker, hva det koster og om det er verdt pengene.</div>
+        <div class="article-meta">⏱ 4 min · Oppdatert 2025</div>
+      </a>
+      <a href="artikler/10-maaneder.html" class="article-card">
+        <span class="article-tag">👶 Utvikling</span>
+        <div class="article-title">10 måneder — hva skal babyen kunne?</div>
+        <div class="article-excerpt">Normale milepæler for 10 måneder og hva du kan gjøre for å støtte utviklingen.</div>
+        <div class="article-meta">⏱ 4 min · Oppdatert 2025</div>
+      </a>
+      <a href="artikler.html" class="article-card" style="background:var(--terra);color:white;display:flex;align-items:center;justify-content:center;text-align:center;">
+        <div>
+          <div style="font-size:2rem;margin-bottom:0.5rem;">📚</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;">Se alle artikler</div>
+          <div style="font-size:0.8rem;opacity:0.8;margin-top:0.3rem;">20+ artikler →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">🍼 Babynorge</div>
+    <p style="font-size:0.82rem;max-width:500px;margin:0 auto;">Norges mest komplette babyportal for foreldre med barn 0–3 år.</p>
+    <div class="footer-links">
+      <a href="/">Hjem</a>
+      <a href="matplanlegger.html">Matplanlegger</a>
+      <a href="artikler.html">Artikler</a>
+      <a href="#forsikring">Forsikring</a>
+      <a href="#vaksiner">Vaksiner</a>
+      <a href="personvern.html">Personvern</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+    <div class="footer-note">
+      Noen lenker er <a href="#">affiliatelenker</a> — vi mottar en liten provisjon uten ekstra kostnad for deg.<br>
+      Innholdet er veiledende og erstatter ikke råd fra lege eller helsepersonell.<br>
+      © 2025 Babynorge.no – Alle rettigheter forbeholdt
+    </div>
   </div>
 </footer>
 
-<script src="main.js"></script>
+<script>
+// ── NAMES DATA ──
+const NAMES = [
+  {name:'Emma',cat:'jente',type:'klassisk',meaning:'Hele, fullstendig',origin:'Germansk'},
+  {name:'Nora',cat:'jente',type:'klassisk',meaning:'Ære, lys',origin:'Latinsk'},
+  {name:'Astrid',cat:'jente',type:'norrønt',meaning:'Guddommelig styrke',origin:'Norrønt'},
+  {name:'Frida',cat:'jente',type:'norrønt',meaning:'Fred, ro',origin:'Norrønt'},
+  {name:'Sigrid',cat:'jente',type:'norrønt',meaning:'Seierrik, vakker',origin:'Norrønt'},
+  {name:'Ingrid',cat:'jente',type:'norrønt',meaning:'Ing er vakker',origin:'Norrønt'},
+  {name:'Maja',cat:'jente',type:'klassisk',meaning:'Stor, herlig',origin:'Latinsk'},
+  {name:'Sofia',cat:'jente',type:'klassisk',meaning:'Visdom',origin:'Gresk'},
+  {name:'Amelia',cat:'jente',type:'klassisk',meaning:'Arbeidssom',origin:'Germansk'},
+  {name:'Olivia',cat:'jente',type:'klassisk',meaning:'Oliventre',origin:'Latinsk'},
+  {name:'Leah',cat:'jente',type:'klassisk',meaning:'Trett, lei',origin:'Hebraisk'},
+  {name:'Ella',cat:'jente',type:'klassisk',meaning:'Lysende, vakker',origin:'Germansk'},
+  {name:'Lucas',cat:'gutt',type:'klassisk',meaning:'Lysende, lys',origin:'Latinsk'},
+  {name:'Oliver',cat:'gutt',type:'klassisk',meaning:'Oliventre, fred',origin:'Latinsk'},
+  {name:'Noah',cat:'gutt',type:'klassisk',meaning:'Ro, hvile',origin:'Hebraisk'},
+  {name:'Liam',cat:'gutt',type:'klassisk',meaning:'Fast beskyttelse',origin:'Irsk'},
+  {name:'Eskil',cat:'gutt',type:'norrønt',meaning:'Gudenes kjele',origin:'Norrønt'},
+  {name:'Leif',cat:'gutt',type:'norrønt',meaning:'Arving, etterkommer',origin:'Norrønt'},
+  {name:'Bjørn',cat:'gutt',type:'norrønt',meaning:'Bjørn',origin:'Norrønt'},
+  {name:'Eirik',cat:'gutt',type:'norrønt',meaning:'Evig hersker',origin:'Norrønt'},
+  {name:'Torsten',cat:'gutt',type:'norrønt',meaning:'Thors stein',origin:'Norrønt'},
+  {name:'Magnus',cat:'gutt',type:'klassisk',meaning:'Den store',origin:'Latinsk'},
+  {name:'Theodor',cat:'gutt',type:'klassisk',meaning:'Guds gave',origin:'Gresk'},
+  {name:'Henrik',cat:'gutt',type:'klassisk',meaning:'Hersker over hjemmet',origin:'Germansk'},
+];
+
+let nameFilter = 'alle';
+
+function filterNames(f, btn) {
+  nameFilter = f;
+  document.querySelectorAll('.name-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderNames();
+}
+
+function renderNames() {
+  const grid = document.getElementById('names-grid');
+  const filtered = NAMES.filter(n =>
+    nameFilter === 'alle' ||
+    n.cat === nameFilter ||
+    n.type === nameFilter
+  );
+  grid.innerHTML = filtered.map(n => `
+    <div class="name-card" title="${n.meaning}">
+      <div class="name-val">${n.name}</div>
+      <div class="name-meaning">${n.meaning}</div>
+      <div class="name-origin">${n.origin}</div>
+    </div>
+  `).join('');
+}
+
+// ── CALC TABS ──
+function openCalc(id, btn) {
+  document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.calc-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  else {
+    const tabs = document.querySelectorAll('.calc-tab');
+    const map = {termin:0,uke:1,sovn:2,vekst:3,fp:4};
+    if (map[id] !== undefined) tabs[map[id]].classList.add('active');
+  }
+  document.getElementById('kalkulatorer').scrollIntoView({behavior:'smooth'});
+}
+
+// ── CALCULATORS ──
+function calcTermin() {
+  const d = new Date(document.getElementById('siste-mens').value);
+  if (isNaN(d)) { alert('Velg en dato'); return; }
+  const termin = new Date(d);
+  termin.setDate(termin.getDate() + 280);
+  const opts = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+  const uker = Math.floor((new Date() - d) / (7*24*3600*1000));
+  document.getElementById('termin-dato').textContent = termin.toLocaleDateString('no-NO', opts);
+  document.getElementById('termin-info').textContent =
+    `Du er ca. ${Math.max(0,uker)} uker gravid nå. Termindatoen er beregnet ut fra Naegeles regel (280 dager fra siste menstruasjon).`;
+  document.getElementById('res-termin').classList.add('show');
+}
+
+function calcUke() {
+  const d = new Date(document.getElementById('mens-uke').value);
+  if (isNaN(d)) { alert('Velg en dato'); return; }
+  const dager = Math.floor((new Date() - d) / (24*3600*1000));
+  const uker = Math.floor(dager / 7);
+  const dagRest = dager % 7;
+  const trimes = uker < 13 ? '1. trimester' : uker < 27 ? '2. trimester' : '3. trimester';
+  document.getElementById('uke-num').textContent = `Uke ${uker}+${dagRest}`;
+  document.getElementById('uke-info').textContent = `${trimes}. ${uker < 4 ? 'Tidlig graviditet — mange vet ikke ennå.' : uker < 13 ? 'Første trimester. Viktig med folat.' : uker < 27 ? 'Andre trimester — de fleste har det best nå.' : 'Tredje trimester — babyen er snart her!'}`;
+  document.getElementById('res-uke').classList.add('show');
+}
+
+function calcSovn() {
+  const data = [
+    {timer:'14–17', info:'Babyen sover i korte perioder hele døgnet. Normal å våkne til amming hver 2–3 time.'},
+    {timer:'12–15', info:'Begynner å sove lenger om natten. 2–3 lurer på dagtid er normalt.'},
+    {timer:'12–14', info:'Typisk 2 lurer per dag. Nattesøvn kan strekke seg til 6–8 timer i strekk.'},
+    {timer:'11–14', info:'1 middagslur. Mange klarer seg uten lur mot slutten av perioden.'},
+    {timer:'10–13', info:'Noen trenger fortsatt lur, andre ikke. Jevn leggetid er viktig.'},
+    {timer:'9–11', info:'Ingen lur. Regelmessig leggetid og rutiner gir best søvn.'},
+  ];
+  const idx = parseInt(document.getElementById('sovn-alder').value);
+  const d = data[idx];
+  document.getElementById('sovn-timer').textContent = d.timer + ' timer/døgn';
+  document.getElementById('sovn-info').textContent = d.info;
+  document.getElementById('res-sovn').classList.add('show');
+}
+
+function calcVekst() {
+  const alder = parseInt(document.getElementById('vekst-alder').value);
+  const kjonn = document.getElementById('vekst-kjonn').value;
+  const vekt = parseFloat(document.getElementById('vekst-vekt').value);
+  const lengde = parseFloat(document.getElementById('vekst-lengde').value);
+  if (isNaN(alder)||isNaN(vekt)||isNaN(lengde)) { alert('Fyll inn alle felt'); return; }
+
+  // WHO median verdier (forenklet)
+  const WHO_J = [{v:3.2,l:49},{v:5.1,l:57},{v:6.4,l:62},{v:7.0,l:65},{v:7.5,l:68},{v:7.9,l:70},{v:8.2,l:72},{v:8.5,l:74},{v:8.7,l:76},{v:9.0,l:77},{v:9.2,l:79},{v:9.4,l:80},{v:9.5,l:81}];
+  const WHO_G = [{v:3.3,l:50},{v:5.3,l:58},{v:6.6,l:63},{v:7.3,l:66},{v:7.9,l:69},{v:8.2,l:71},{v:8.6,l:73},{v:8.9,l:75},{v:9.1,l:77},{v:9.4,l:78},{v:9.6,l:80},{v:9.8,l:81},{v:10.0,l:82}];
+  const ref = kjonn === 'j' ? WHO_J : WHO_G;
+  const idx = Math.min(alder, ref.length-1);
+  const medVekt = ref[idx].v;
+  const medLengde = ref[idx].l;
+  const vektDiff = ((vekt - medVekt)/medVekt*100).toFixed(0);
+  const lengdeDiff = ((lengde - medLengde)/medLengde*100).toFixed(1);
+
+  document.getElementById('vekst-res').textContent =
+    `Vekt: ${vekt > medVekt ? '+' : ''}${vektDiff}% fra median · Lengde: ${lengde > medLengde ? '+' : ''}${lengdeDiff}%`;
+  document.getElementById('vekst-info').textContent =
+    `WHO-median for ${alder} måneder (${kjonn==='j'?'jente':'gutt'}): ${medVekt} kg og ${medLengde} cm. ` +
+    `Barnet ditt er innenfor normalt område hvis det vokser jevnt langs sin kurve. Kontakt helsestasjon ved bekymring.`;
+  document.getElementById('res-vekst').classList.add('show');
+}
+
+function calcFP() {
+  const lonn = parseFloat(document.getElementById('fp-lonn').value);
+  const grad = parseFloat(document.getElementById('fp-grad').value);
+  if (isNaN(lonn)) { alert('Fyll inn årslønn'); return; }
+  const G = 124028; // Grunnbeløp 2025
+  const maxLonn = 6 * G;
+  const beregningsgrunnlag = Math.min(lonn, maxLonn);
+  const daglig = (beregningsgrunnlag * grad) / 260;
+  const ukentlig = daglig * 5;
+  const maanedlig = Math.round(daglig * 260 / 12);
+  document.getElementById('fp-res').textContent = `Ca. ${maanedlig.toLocaleString('no-NO')} kr/mnd`;
+  document.getElementById('fp-info').textContent =
+    `Basert på ${grad*100}% dekningsgrad. Max grunnlag er 6G (${maxLonn.toLocaleString('no-NO')} kr). ` +
+    `${lonn > maxLonn ? 'Din lønn overstiger 6G — du får ikke full kompensasjon. ' : ''}` +
+    `Daglig: ${Math.round(daglig).toLocaleString('no-NO')} kr · Ukentlig: ${Math.round(ukentlig).toLocaleString('no-NO')} kr.`;
+  document.getElementById('res-fp').classList.add('show');
+}
+
+// ── INIT ──
+renderNames();
+
+// Set default dates
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('siste-mens').value = today;
+document.getElementById('mens-uke').value = today;
+</script>
 </body>
 </html>
