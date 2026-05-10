@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt oss – Babynorge.no</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:#fdf8f3;color:#2a1f14;line-height:1.7;}
+nav{background:#fff;border-bottom:1px solid #e8ddd4;padding:0 1.5rem;position:sticky;top:0;z-index:100;}
+.nav-inner{max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:#c4714a;text-decoration:none;}
+.nav-back{font-size:0.85rem;font-weight:600;color:#8a7060;text-decoration:none;}
+.hero{background:linear-gradient(135deg,#fdf0ed,#f5ede0);padding:2.5rem 1.5rem 2rem;border-bottom:1px solid #e8ddd4;}
+.hero-inner{max-width:800px;margin:0 auto;}
+.hero h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;margin-bottom:0.5rem;}
+.hero p{color:#8a7060;font-size:1rem;}
+.content{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2.5rem;}
+.contact-card{background:#fff;border:1.5px solid #e8ddd4;border-radius:14px;padding:1.5rem;text-align:center;}
+.contact-icon{font-size:2rem;margin-bottom:0.5rem;}
+.contact-title{font-weight:700;font-size:0.95rem;margin-bottom:0.3rem;}
+.contact-desc{font-size:0.82rem;color:#8a7060;line-height:1.5;}
+.contact-desc a{color:#c4714a;text-decoration:none;font-weight:700;}
+.form-box{background:#fff;border:1.5px solid #e8ddd4;border-radius:16px;padding:2rem;box-shadow:0 4px 24px rgba(42,31,20,0.08);}
+.form-box h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:1.5rem;}
+.field{display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1rem;}
+.field label{font-size:0.75rem;font-weight:700;color:#8a7060;text-transform:uppercase;letter-spacing:0.4px;}
+.field input,.field textarea,.field select{background:#f5ede0;border:1.5px solid #e8ddd4;border-radius:8px;padding:0.7rem 0.85rem;font-family:'Nunito',sans-serif;font-size:0.95rem;color:#2a1f14;transition:border-color 0.15s;}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:#c4714a;}
+.field textarea{resize:vertical;min-height:120px;}
+.btn-send{background:#c4714a;color:#fff;border:none;padding:0.85rem 2rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;width:100%;margin-top:0.5rem;transition:background 0.15s;}
+.btn-send:hover{background:#a85a38;}
+.success-msg{display:none;background:#d4f0d4;border:1.5px solid #7abc7a;border-radius:10px;padding:1rem;margin-top:1rem;color:#2a6a2a;font-weight:600;text-align:center;}
+footer{background:#2a1f14;color:rgba(255,255,255,0.5);padding:1.5rem;text-align:center;font-size:0.72rem;}
+footer a{color:#f2c4b8;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">🍼 Babynorge</a>
+    <a href="/" class="nav-back">← Tilbake til forsiden</a>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Kontakt oss</h1>
+    <p>Vi svarer på alle henvendelser innen 2–3 virkedager.</p>
+  </div>
+</div>
+<div class="content">
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">📧</div>
+      <div class="contact-title">E-post</div>
+      <div class="contact-desc"><a href="mailto:hei@babynorge.no">hei@babynorge.no</a></div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">🌐</div>
+      <div class="contact-title">Nettside</div>
+      <div class="contact-desc"><a href="https://babynorge.no">babynorge.no</a></div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <div class="contact-title">Land</div>
+      <div class="contact-desc">Norge</div>
+    </div>
+  </div>
+
+  <div class="form-box">
+    <h2>Send oss en melding</h2>
+    <div class="field">
+      <label>Navn</label>
+      <input type="text" id="navn" placeholder="Ditt navn">
+    </div>
+    <div class="field">
+      <label>E-post</label>
+      <input type="email" id="epost" placeholder="din@epost.no">
+    </div>
+    <div class="field">
+      <label>Emne</label>
+      <select id="emne">
+        <option value="">Velg emne</option>
+        <option value="samarbeid">Samarbeid / Annonsering</option>
+        <option value="feil">Rapporter feil på siden</option>
+        <option value="innhold">Spørsmål om innhold</option>
+        <option value="annet">Annet</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Melding</label>
+      <textarea id="melding" placeholder="Skriv din melding her..."></textarea>
+    </div>
+    <button class="btn-send" onclick="sendMelding()">Send melding →</button>
+    <div class="success-msg" id="success-msg">✅ Takk for din henvendelse! Vi svarer innen 2–3 virkedager.</div>
+  </div>
+</div>
+<footer>
+  <p>© 2025 Babynorge.no · <a href="/personvern.html">Personvern</a> · <a href="/om-oss.html">Om oss</a></p>
+</footer>
+<script>
+function sendMelding() {
+  const navn = document.getElementById('navn').value;
+  const epost = document.getElementById('epost').value;
+  const melding = document.getElementById('melding').value;
+  if (!navn || !epost || !melding) { alert('Fyll inn navn, e-post og melding.'); return; }
+  document.getElementById('success-msg').style.display = 'block';
+  document.getElementById('navn').value = '';
+  document.getElementById('epost').value = '';
+  document.getElementById('melding').value = '';
+  document.getElementById('emne').value = '';
+}
+</script>
+</body>
+</html>
