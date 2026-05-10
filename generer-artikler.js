@@ -2,6 +2,93 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
+const DOMAIN = 'https://babynorge.no';
+
+// =============================================
+// BUTIKKER PER KATEGORI
+// Bytt ut href med Adtraction-lenker nar du far det opp
+// =============================================
+const BUTIKKER = {
+  'Sovn': [
+    { navn: 'Babysam', emoji: '🛍️', beskrivelse: 'Stort utvalg soveposer, babynest og soveutstyr', kode: 'BABY10', rabatt: '10% rabatt', href: 'https://www.babysam.no' },
+    { navn: 'Jollyroom', emoji: '🌟', beskrivelse: 'Gode priser pa babymøbler og sengeutstyr', kode: 'JR5', rabatt: '5% pa alt', href: 'https://www.jollyroom.no' },
+  ],
+  'Mat og amming': [
+    { navn: 'Medela', emoji: '🍼', beskrivelse: 'Verdensledende brystpumper og ammeutstyr', kode: 'MEDELA10', rabatt: '10% rabatt', href: 'https://www.medela.com/no' },
+    { navn: 'Adams Matkasse', emoji: '🥗', beskrivelse: 'Enkel middagsplanlegging for smaabarnsfamilier', kode: 'BABYNORGE', rabatt: 'Opptil 50% pa forste kasse', href: 'https://www.adamsmatkasse.no' },
+  ],
+  'Mat': [
+    { navn: 'Adams Matkasse', emoji: '🥗', beskrivelse: 'Ferske ravaarer og enkle oppskrifter levert hjem', kode: 'BABYNORGE', rabatt: 'Opptil 50% pa forste kasse', href: 'https://www.adamsmatkasse.no' },
+    { navn: 'Babysam', emoji: '🛍️', beskrivelse: 'Alt av babymat, skjeer og matingsutstyr', kode: 'BABY10', rabatt: '10% rabatt', href: 'https://www.babysam.no' },
+  ],
+  'Klar': [
+    { navn: 'Babyshop', emoji: '👶', beskrivelse: 'Skandinavisk design og kvalitetsklaar for barn', kode: 'FRAKT499', rabatt: 'Gratis frakt over 499 kr', href: 'https://www.babyshop.com/no' },
+    { navn: 'Name It', emoji: '🧸', beskrivelse: 'Populaere barneklaar i god kvalitet', kode: 'NAME20', rabatt: '20% rabatt', href: 'https://www.nameit.com/no' },
+  ],
+  'Helse': [
+    { navn: 'Apotek 1', emoji: '💊', beskrivelse: 'Vitaminer, babypleie og helseprodukter', kode: null, rabatt: '15% pa babypleie', href: 'https://www.apotek1.no' },
+    { navn: 'Babysam', emoji: '🛍️', beskrivelse: 'Babystell, hudpleie og helseutstyr', kode: 'BABY10', rabatt: '10% rabatt', href: 'https://www.babysam.no' },
+  ],
+  'Sikkerhet': [
+    { navn: 'BabyDan', emoji: '🚼', beskrivelse: 'Dansk kvalitet innen barnesikring og grinder', kode: 'DANFRI', rabatt: 'Gratis frakt', href: 'https://www.babydan.com/no' },
+    { navn: 'Babysam', emoji: '🛍️', beskrivelse: 'Bilseter, babysikring og trygghetsutstyr', kode: 'BABY10', rabatt: '10% rabatt', href: 'https://www.babysam.no' },
+  ],
+  'Sommer': [
+    { navn: 'Babysam', emoji: '🛍️', beskrivelse: 'Solhatter, UV-drakter og sommerleker', kode: 'BABY10', rabatt: '10% rabatt', href: 'https://www.babysam.no' },
+    { navn: 'Babyshop', emoji: '👶', beskrivelse: 'Sommerkolleksjon for de minste', kode: 'FRAKT499', rabatt: 'Gratis frakt over 499 kr', href: 'https://www.babyshop.com/no' },
+  ],
+  'Reise': [
+    { navn: 'Jollyroom', emoji: '🌟', beskrivelse: 'Reisesenger, bareseler og reiseutstyr', kode: 'JR5', rabatt: '5% pa alt', href: 'https://www.jollyroom.no' },
+    { navn: 'Babysam', emoji: '🛍️', beskrivelse: 'Alt du trenger for reise med baby', kode: 'BABY10', rabatt: '10% rabatt', href: 'https://www.babysam.no' },
+  ],
+  'Utstyr': [
+    { navn: 'Jollyroom', emoji: '🌟', beskrivelse: 'Stort utvalg vogner, bareseler og tilbehor', kode: 'JR5', rabatt: '5% pa alt', href: 'https://www.jollyroom.no' },
+    { navn: 'Babysam', emoji: '🛍️', beskrivelse: 'Norges storste babybutikk', kode: 'BABY10', rabatt: '10% rabatt', href: 'https://www.babysam.no' },
+  ],
+  'Baby': [
+    { navn: 'Babysam', emoji: '🛍️', beskrivelse: 'Alt du trenger til den nye babyen', kode: 'BABY10', rabatt: '10% rabatt', href: 'https://www.babysam.no' },
+    { navn: 'Babyshop', emoji: '👶', beskrivelse: 'Kvalitetsutstyr og klaar for de minste', kode: 'FRAKT499', rabatt: 'Gratis frakt over 499 kr', href: 'https://www.babyshop.com/no' },
+  ],
+  'Graviditet': [
+    { navn: 'Apotek 1', emoji: '💊', beskrivelse: 'Folsyre, vitaminer og graviditetsprodukter', kode: null, rabatt: '15% pa graviditetsprodukter', href: 'https://www.apotek1.no' },
+    { navn: 'Babysam', emoji: '🛍️', beskrivelse: 'Mammakjoler, amme-BH og graviditetsklaar', kode: 'BABY10', rabatt: '10% rabatt', href: 'https://www.babysam.no' },
+  ],
+  'Utvikling': [
+    { navn: 'Babysam', emoji: '🛍️', beskrivelse: 'Pedagogiske leker og utviklingsverktoy', kode: 'BABY10', rabatt: '10% rabatt', href: 'https://www.babysam.no' },
+    { navn: 'Jollyroom', emoji: '🌟', beskrivelse: 'Leker og aktiviteter for alle aldre', kode: 'JR5', rabatt: '5% pa alt', href: 'https://www.jollyroom.no' },
+  ],
+};
+
+const DEFAULT_BUTIKKER = [
+  { navn: 'Babysam', emoji: '🛍️', beskrivelse: 'Norges storste babybutikk', kode: 'BABY10', rabatt: '10% rabatt', href: 'https://www.babysam.no' },
+  { navn: 'Jollyroom', emoji: '🌟', beskrivelse: 'Stort utvalg til gode priser', kode: 'JR5', rabatt: '5% pa alt', href: 'https://www.jollyroom.no' },
+];
+
+function lagAffiliateBlokk(kategori) {
+  const butikker = BUTIKKER[kategori] || DEFAULT_BUTIKKER;
+  const kortHTML = butikker.map(b =>
+    '<div style="background:#fdf8f3;border:1px solid #e8ddd4;border-radius:12px;padding:1rem;display:flex;flex-direction:column;gap:0.5rem;">' +
+    '<div style="display:flex;align-items:center;gap:0.6rem;"><span style="font-size:1.5rem;">' + b.emoji + '</span>' +
+    '<div><div style="font-weight:800;font-size:0.95rem;">' + b.navn + '</div>' +
+    '<div style="font-size:0.75rem;color:#8a7060;">' + b.beskrivelse + '</div></div></div>' +
+    (b.kode
+      ? '<div style="background:#fff;border:1.5px dashed #e8ddd4;border-radius:8px;padding:0.4rem 0.75rem;font-family:monospace;font-weight:800;font-size:0.95rem;letter-spacing:0.06em;">🏷️ ' + b.kode + ' — ' + b.rabatt + '</div>'
+      : '<div style="font-size:0.82rem;color:#1a6b2e;font-weight:700;">✅ ' + b.rabatt + ' — ingen kode nodvendig</div>') +
+    '<a href="' + b.href + '" target="_blank" rel="noopener" style="display:block;text-align:center;background:#c4714a;color:#fff;font-weight:800;font-size:0.85rem;padding:0.6rem;border-radius:8px;text-decoration:none;">Ga til ' + b.navn + ' →</a>' +
+    '</div>'
+  ).join('');
+
+  return '<div style="background:#fff;border:1px solid #e8ddd4;border-radius:16px;padding:1.5rem;margin:2.5rem 0;">' +
+    '<h3 style="font-family:serif;font-size:1.2rem;margin-bottom:0.4rem;">🛍️ Anbefalte butikker</h3>' +
+    '<p style="font-size:0.82rem;color:#8a7060;margin-bottom:1.1rem;">Finn alt du trenger — med gode rabattkoder</p>' +
+    '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.85rem;">' + kortHTML + '</div>' +
+    '<p style="font-size:0.7rem;color:#aaa;margin-top:1rem;text-align:center;">Se alle rabattkoder pa <a href="/rabattkoder.html" style="color:#c4714a;">Babynorge rabattkoder</a></p>' +
+    '</div>';
+}
+
+// =============================================
+// TOPICS
+// =============================================
 const TOPICS = [
   { tittel: 'Sovnregresjon ved 4 maneder - hva skjer og hva gjor du?', kategori: 'Sovn', emoji: '😴', color: '#e8e2f5' },
   { tittel: 'Amming vs flaske - fordeler og ulemper', kategori: 'Mat og amming', emoji: '🤱', color: '#fde8d0' },
@@ -13,11 +100,31 @@ const TOPICS = [
   { tittel: 'Termindato beregning - slik regner du ut', kategori: 'Graviditet', emoji: '📅', color: '#d6ebf5' },
   { tittel: 'Babysikring av hjemmet - komplett sjekkliste', kategori: 'Sikkerhet', emoji: '🏠', color: '#d4edda' },
   { tittel: 'D-vitamin til baby - alt du trenger a vite', kategori: 'Helse', emoji: '☀️', color: '#fff3cd' },
-  { tittel: 'Tannfrembrudd hos baby - tegn og tips', kategori: 'Helse', emoji: '🦷', color: '#fff3cd' },
-  { tittel: 'Barneforsikring - trenger du det?', kategori: 'Okonomi', emoji: '🛡️', color: '#d6ebf5' },
-  { tittel: 'Barselsdepresjon - symptomer og hjelp', kategori: 'Helse', emoji: '💙', color: '#d6ebf5' },
-  { tittel: 'BLW - baby-ledet avvenning fra start', kategori: 'Mat', emoji: '🥕', color: '#fddbd8' },
-  { tittel: 'Foreldrepenger 2025 - slik fungerer det', kategori: 'Okonomi', emoji: '💰', color: '#d4edda' },
+  { tittel: 'Baby i sommervarmen - slik holder du babyen kjolig', kategori: 'Sommer', emoji: '☀️', color: '#fff3cd' },
+  { tittel: 'Solkrem til baby - hvilken er trygg og nar kan du bruke den?', kategori: 'Sommer', emoji: '🧴', color: '#fde8d0' },
+  { tittel: 'Baby i basseng - alder, sikkerhet og tips', kategori: 'Sommer', emoji: '🏊', color: '#d6ebf5' },
+  { tittel: 'Sovn om sommeren - slik far babyen nok sovn i lys og varme', kategori: 'Sovn', emoji: '😴', color: '#e8e2f5' },
+  { tittel: 'Hva skal baby ha pa seg i varmen? Klesguide for sommeren', kategori: 'Klar', emoji: '👕', color: '#d4edda' },
+  { tittel: 'Overoppheting hos baby - tegn, fare og forebygging', kategori: 'Helse', emoji: '🌡️', color: '#fddbd8' },
+  { tittel: 'Baby og sol - slik beskytter du mot solbrenthet', kategori: 'Sommer', emoji: '🕶️', color: '#fff3cd' },
+  { tittel: 'Amming om sommeren - ekstra vaeske og varmerad', kategori: 'Mat og amming', emoji: '🤱', color: '#fde8d0' },
+  { tittel: 'Baby og mygg - er myggmiddel trygt og hva virker?', kategori: 'Helse', emoji: '🦟', color: '#d4edda' },
+  { tittel: 'Utstyr til strand og sommer med baby - hva trenger du egentlig?', kategori: 'Utstyr', emoji: '🏖️', color: '#d6ebf5' },
+  { tittel: 'Baby pa ferie - rad for flyreise, biltur og hotell', kategori: 'Reise', emoji: '✈️', color: '#d6ebf5' },
+  { tittel: 'Varmeutslett hos baby - arsak og behandling', kategori: 'Helse', emoji: '🔴', color: '#fddbd8' },
+  { tittel: 'Babymat om sommeren - hva er trygt i varmen?', kategori: 'Mat', emoji: '🥗', color: '#fddbd8' },
+  { tittel: 'Baby i bil om sommeren - temperatur og sikkerhet', kategori: 'Sikkerhet', emoji: '🚗', color: '#d4edda' },
+  { tittel: 'Lette soveposer og nattklaar til baby om sommeren', kategori: 'Sovn', emoji: '🌙', color: '#e8e2f5' },
+  { tittel: 'Solhatt og UV-drakt til baby - hva du bor kjope', kategori: 'Klar', emoji: '👒', color: '#fff3cd' },
+  { tittel: 'Baby og varme netter - slik far dere sovet', kategori: 'Sovn', emoji: '🌙', color: '#e8e2f5' },
+  { tittel: 'Badedag med baby - tips til bading ute og inne', kategori: 'Sommer', emoji: '🛁', color: '#d6ebf5' },
+  { tittel: 'Tegn pa dehydrering hos baby - hva du skal se etter', kategori: 'Helse', emoji: '💧', color: '#fddbd8' },
+  { tittel: 'Baby i hage og natur - allergi, insekter og plantegifter', kategori: 'Sikkerhet', emoji: '🌿', color: '#d4edda' },
+  { tittel: 'Reise til varmere strok med baby - forberedelser og helserad', kategori: 'Reise', emoji: '🌍', color: '#d6ebf5' },
+  { tittel: 'Sommerbursdag med baby - praktiske tips', kategori: 'Baby', emoji: '🎂', color: '#fde8d0' },
+  { tittel: 'Forste sommer med nyfodt - hva ingen forteller deg', kategori: 'Baby', emoji: '👶', color: '#fddbd8' },
+  { tittel: 'Myggnett til vogn og barneseng - trygt og effektivt', kategori: 'Utstyr', emoji: '🛡️', color: '#d4edda' },
+  { tittel: 'Baby og hoy UV-indeks - nar er solen farlig?', kategori: 'Helse', emoji: '☀️', color: '#fff3cd' },
 ];
 
 function callAnthropic(prompt) {
@@ -27,7 +134,6 @@ function callAnthropic(prompt) {
       max_tokens: 1800,
       messages: [{ role: 'user', content: prompt }]
     });
-
     const options = {
       hostname: 'api.anthropic.com',
       path: '/v1/messages',
@@ -39,15 +145,12 @@ function callAnthropic(prompt) {
         'Content-Length': Buffer.byteLength(body)
       }
     };
-
     const req = https.request(options, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
-        try {
-          const parsed = JSON.parse(data);
-          resolve(parsed.content[0].text);
-        } catch(e) { reject(e); }
+        try { resolve(JSON.parse(data).content[0].text); }
+        catch(e) { reject(e); }
       });
     });
     req.on('error', reject);
@@ -57,14 +160,32 @@ function callAnthropic(prompt) {
 }
 
 function lagSlug(tittel) {
-  return tittel.toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
+  return tittel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function oppdaterSitemap(artikler) {
+  const sitemapPath = path.join(__dirname, 'sitemap.xml');
+  const datoISO = new Date().toISOString().split('T')[0];
+  const statiske = [
+    { url: '/', priority: '1.0', changefreq: 'weekly' },
+    { url: '/artikler.html', priority: '0.8', changefreq: 'weekly' },
+    { url: '/forum.html', priority: '0.7', changefreq: 'weekly' },
+    { url: '/rabattkoder.html', priority: '0.7', changefreq: 'weekly' },
+  ];
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  for (const s of statiske) {
+    xml += '  <url>\n    <loc>' + DOMAIN + s.url + '</loc>\n    <lastmod>' + datoISO + '</lastmod>\n    <changefreq>' + s.changefreq + '</changefreq>\n    <priority>' + s.priority + '</priority>\n  </url>\n';
+  }
+  for (const a of artikler) {
+    xml += '  <url>\n    <loc>' + DOMAIN + '/artikler/' + a.slug + '.html</loc>\n    <lastmod>' + (a.datoISO || datoISO) + '</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>\n';
+  }
+  xml += '</urlset>';
+  fs.writeFileSync(sitemapPath, xml, 'utf8');
+  console.log('Sitemap oppdatert:', artikler.length, 'artikler +', statiske.length, 'statiske sider');
 }
 
 async function genererArtikkel() {
-  const rootDir = __dirname;
-  const artiklerDir = path.join(rootDir, 'artikler');
+  const artiklerDir = path.join(__dirname, 'artikler');
   if (!fs.existsSync(artiklerDir)) fs.mkdirSync(artiklerDir);
 
   const indexPath = path.join(artiklerDir, 'index.json');
@@ -81,114 +202,30 @@ async function genererArtikkel() {
 
   console.log('Genererer artikkel:', tema.tittel);
 
-  const prompt = `Du er ekspert pa norske babyer og graviditet. Skriv en grundig artikkel pa norsk om: "${tema.tittel}". 
-Artikkelen skal ha 4-6 seksjoner med h2-overskrifter, praktiske rad og 500-700 ord. 
-Formater som HTML med h2, p, ul og li tagger. 
-Ikke inkluder DOCTYPE, html, head eller body tagger.
-Skriv engasjerende og varm tekst som hjelper norske foreldre.`;
+  const prompt = 'Du er ekspert pa norske babyer og graviditet. Skriv en grundig artikkel pa norsk om: "' + tema.tittel + '". Artikkelen skal ha 4-6 seksjoner med h2-overskrifter, praktiske rad og 500-700 ord. Formater som HTML med h2, p, ul og li tagger. Ikke inkluder DOCTYPE, html, head eller body tagger.';
 
   const innhold = await callAnthropic(prompt);
   const slug = lagSlug(tema.tittel);
   const dato = new Date().toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' });
   const datoISO = new Date().toISOString().split('T')[0];
+  const affiliateBlokk = lagAffiliateBlokk(tema.kategori);
 
-  const nyArtikkel = {
-    slug,
-    tittel: tema.tittel,
-    kategori: tema.kategori,
-    emoji: tema.emoji,
-    color: tema.color,
-    dato,
-    datoISO,
-    lesetid: '5 min',
-    ingress: 'Les var guide om ' + tema.tittel.toLowerCase()
-  };
-
-  const artikkelHTML = `<!DOCTYPE html>
-<html lang="nb">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${tema.tittel} | Babynorge.no</title>
-<meta name="description" content="${nyArtikkel.ingress}">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Nunito',sans-serif;background:#fdf8f3;color:#2a1f14;line-height:1.7;}
-nav{background:#fff;border-bottom:1px solid #e8ddd4;padding:0 1.5rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
-.nav-inner{max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:#c4714a;text-decoration:none;}
-.nav-back{font-size:0.85rem;font-weight:600;color:#8a7060;text-decoration:none;}
-.nav-back:hover{color:#c4714a;}
-.hero{background:linear-gradient(135deg,${tema.color},#fdf8f3);padding:2.5rem 1.5rem 2rem;border-bottom:1px solid #e8ddd4;}
-.hero-inner{max-width:800px;margin:0 auto;}
-.hero-tag{display:inline-flex;align-items:center;gap:0.35rem;background:#fff;border:1px solid #e8ddd4;border-radius:20px;padding:0.3rem 0.85rem;font-size:0.72rem;font-weight:700;color:#c4714a;margin-bottom:1rem;}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;line-height:1.25;margin-bottom:0.75rem;}
-.hero-meta{font-size:0.78rem;color:#8a7060;display:flex;gap:1rem;flex-wrap:wrap;}
-.article-body{max-width:800px;margin:0 auto;padding:2rem 1.5rem 4rem;}
-.article-body h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:2rem 0 0.75rem;color:#2a1f14;padding-top:1rem;border-top:1px solid #e8ddd4;}
-.article-body h2:first-child{border-top:none;margin-top:0;}
-.article-body h3{font-size:1.1rem;font-weight:700;margin:1.5rem 0 0.5rem;color:#2a1f14;}
-.article-body p{margin-bottom:1rem;font-size:0.97rem;color:#3a2a1a;}
-.article-body ul,.article-body ol{margin:0.75rem 0 1rem 1.5rem;}
-.article-body li{margin-bottom:0.5rem;font-size:0.97rem;color:#3a2a1a;}
-.article-body strong{color:#2a1f14;font-weight:700;}
-.affiliate-strip{background:linear-gradient(135deg,#fff8ec,#fff3dc);border:1.5px solid #f0d080;border-radius:14px;padding:1.2rem 1.4rem;margin:2.5rem 0 1.5rem;}
-.affiliate-strip h3{font-size:0.95rem;font-weight:700;margin-bottom:0.4rem;}
-.affiliate-strip p{font-size:0.8rem;color:#8a7060;margin-bottom:0.75rem;}
-.aff-btns{display:flex;gap:0.5rem;flex-wrap:wrap;}
-.aff-btn{background:#3d6b42;color:#fff;border:none;padding:0.55rem 1rem;border-radius:8px;font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;text-decoration:none;display:inline-block;}
-.aff-btn:hover{background:#2a5030;}
-.back-btn{display:inline-flex;align-items:center;gap:0.4rem;background:#c4714a;color:#fff;padding:0.65rem 1.3rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:700;text-decoration:none;margin-top:1rem;}
-footer{background:#2a1f14;color:rgba(255,255,255,0.5);padding:1.5rem;text-align:center;font-size:0.72rem;margin-top:3rem;}
-footer a{color:#f2c4b8;}
-@media(max-width:600px){.hero{padding:1.5rem 1rem;}.article-body{padding:1.5rem 1rem 3rem;}}
-</style>
-</head>
-<body>
-<nav>
-  <div class="nav-inner">
-    <a href="/" class="nav-logo">🍼 Babynorge</a>
-    <a href="/artikler.html" class="nav-back">← Alle artikler</a>
-  </div>
-</nav>
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-tag">${tema.emoji} ${tema.kategori}</div>
-    <h1>${tema.tittel}</h1>
-    <div class="hero-meta">
-      <span>📅 ${dato}</span>
-      <span>⏱ 5 min lesetid</span>
-      <span>✍️ Babynorge redaksjonen</span>
-    </div>
-  </div>
-</div>
-<div class="article-body">
-${innhold}
-<div class="affiliate-strip">
-  <h3>🛍️ Produkter vi anbefaler</h3>
-  <p>Finn alt du trenger til babyen hos våre samarbeidspartnere.</p>
-  <div class="aff-btns">
-    <a href="https://www.babysam.no" target="_blank" class="aff-btn">Babysam</a>
-    <a href="https://www.babyshop.no" target="_blank" class="aff-btn">Babyshop</a>
-    <a href="https://www.adamsmatkasse.no" target="_blank" class="aff-btn">Adams Matkasse</a>
-  </div>
-</div>
-<a href="/artikler.html" class="back-btn">← Tilbake til alle artikler</a>
-</div>
-<footer>
-  <p>© 2025 Babynorge.no · <a href="/personvern.html">Personvern</a> · Innholdet er veiledende og erstatter ikke råd fra lege.</p>
-</footer>
-</body>
-</html>`;
+  const artikkelHTML = '<!DOCTYPE html>\n<html lang="nb">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>' + tema.tittel + ' | Babynorge.no</title>\n<meta name="description" content="Les var guide om ' + tema.tittel.toLowerCase() + '">\n<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">\n<style>\n*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Nunito,sans-serif;background:#fdf8f3;color:#2a1f14;line-height:1.7;}nav{background:#fff;border-bottom:1px solid #e8ddd4;padding:0 1.5rem;position:sticky;top:0;z-index:100;}.nav-inner{max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}.nav-logo{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:900;color:#c4714a;text-decoration:none;}.nav-back{font-size:0.85rem;font-weight:600;color:#8a7060;text-decoration:none;}.hero{background:#fff3cd;padding:2.5rem 1.5rem 2rem;border-bottom:1px solid #e8ddd4;}.hero-inner{max-width:800px;margin:0 auto;}.hero h1{font-family:"Playfair Display",serif;font-size:2rem;font-weight:900;margin-bottom:0.75rem;}.hero-meta{font-size:0.82rem;color:#8a7060;display:flex;gap:1rem;flex-wrap:wrap;margin-top:0.5rem;}.article-body{max-width:800px;margin:0 auto;padding:2rem 1.5rem 4rem;}.article-body h2{font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:700;margin:2rem 0 0.75rem;color:#c4714a;}.article-body p{margin-bottom:1rem;}.article-body ul{margin:0.5rem 0 1rem 1.5rem;}.article-body li{margin-bottom:0.4rem;}.back-btn{display:inline-block;margin-top:1.5rem;color:#c4714a;font-weight:700;text-decoration:none;}footer{background:#2a1f14;color:rgba(255,255,255,0.5);padding:1.5rem;text-align:center;font-size:0.72rem;}footer a{color:#f2c4b8;}\n</style>\n</head>\n<body>\n<nav><div class="nav-inner"><a href="/" class="nav-logo">🍼 Babynorge</a><a href="/artikler.html" class="nav-back">← Alle artikler</a></div></nav>\n<div class="hero"><div class="hero-inner"><div>' + tema.emoji + ' ' + tema.kategori + '</div><h1>' + tema.tittel + '</h1><div class="hero-meta"><span>📅 ' + dato + '</span><span>⏱ 5 min lesetid</span></div></div></div>\n<div class="article-body">\n' + innhold + '\n' + affiliateBlokk + '\n<a href="/artikler.html" class="back-btn">← Tilbake til alle artikler</a>\n</div>\n<footer><p>© 2025 Babynorge.no · <a href="/personvern.html">Personvern</a> · <a href="/rabattkoder.html">Rabattkoder</a> · Innholdet er veiledende og erstatter ikke rad fra lege.</p></footer>\n</body>\n</html>';
 
   fs.writeFileSync(path.join(artiklerDir, slug + '.html'), artikkelHTML);
+
+  const nyArtikkel = {
+    slug, tittel: tema.tittel, kategori: tema.kategori,
+    emoji: tema.emoji, color: tema.color, dato, datoISO,
+    lesetid: '5 min', ingress: 'Les var guide om ' + tema.tittel.toLowerCase()
+  };
 
   artikler.unshift(nyArtikkel);
   if (artikler.length > 50) artikler = artikler.slice(0, 50);
   fs.writeFileSync(indexPath, JSON.stringify(artikler, null, 2));
 
-  console.log('Artikkel generert:', slug);
+  oppdaterSitemap(artikler);
+  console.log('Ferdig:', slug);
 }
 
 genererArtikkel().catch(console.error);
